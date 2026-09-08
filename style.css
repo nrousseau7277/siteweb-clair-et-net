@@ -1,0 +1,187 @@
+/* ============================================================
+   CLAIR & NET — Bussy-Saint-Georges
+   Feuille de style unique. Pour changer l'identité visuelle,
+   il n'y a que les variables ci-dessous à modifier.
+   ============================================================ */
+:root{
+  /* Couleurs relevees directement sur le logo de Clair & Net.
+     Rose magenta #FC00A8 (la maison), dore #A89000 (les etoiles), noir (le nom). */
+  --rose:#E6009A;
+  --rose-vif:#FC00A8;
+  --rose-fonce:#A8006E;
+  --rose-pale:#FDEBF6;
+  --or:#A89000;
+  --encre:#171317;
+  --gris:#6E626B;
+  --ligne:#F3DDEB;
+  --fond:#FFFCFE;
+  --blanc:#fff;
+  --titre:"Outfit",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --texte:"Inter",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --rayon:14px;
+  --ombre:0 18px 44px -28px rgba(168,0,110,.34);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--texte);color:var(--encre);background:var(--fond);line-height:1.7;font-size:16.5px;-webkit-font-smoothing:antialiased}
+img,iframe{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacing:-.015em}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.etroit{max-width:760px}
+.centre{text-align:center}
+.note{font-size:.87rem;color:var(--gris)}
+.saut{position:absolute;left:-9999px}
+.saut:focus{left:12px;top:12px;background:var(--blanc);padding:12px 18px;z-index:200;border-radius:8px}
+
+/* ---------- En-tête ---------- */
+.entete{position:sticky;top:0;z-index:100;background:rgba(251,253,253,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--ligne)}
+.entete-in{display:flex;align-items:center;gap:24px;padding-top:11px;padding-bottom:11px}
+.marque{display:flex;align-items:center;gap:12px;margin-right:auto}
+.marque-logo{height:60px;width:auto;flex:none}
+.marque-txt{display:flex;flex-direction:column;line-height:1.15}
+.marque-nom{font-family:var(--titre);font-size:1.42rem;font-weight:600;color:var(--rose-fonce)}
+.marque-nom em{font-style:normal;color:var(--or)}
+.marque-sous{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gris)}
+.menu{display:flex;gap:22px;align-items:center}
+.menu a{font-size:.9rem;color:var(--encre);padding:6px 0;border-bottom:2px solid transparent;transition:.25s;white-space:nowrap}
+.menu a:hover{color:var(--rose)}
+.menu a.actif{color:var(--rose);border-bottom-color:var(--or)}
+.tel-entete{background:var(--rose);color:var(--blanc);padding:11px 20px;border-radius:100px;font-weight:500;font-size:.92rem;white-space:nowrap;transition:.25s}
+.tel-entete:hover{background:var(--rose-fonce)}
+.menu-check{position:absolute;opacity:0;width:1px;height:1px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.burger span{width:24px;height:2px;background:var(--encre);transition:.3s}
+
+/* ---------- Hero ---------- */
+.hero-grand,.hero-court{background:linear-gradient(165deg,var(--rose-pale),var(--fond) 70%);border-bottom:1px solid var(--ligne)}
+.hero-grand .wrap{padding-top:clamp(56px,8vh,96px);padding-bottom:clamp(48px,7vh,84px);max-width:900px}
+.hero-court .wrap{padding-top:clamp(40px,6vh,68px);padding-bottom:clamp(34px,5vh,56px);max-width:900px}
+.marque-sous{max-width:210px;letter-spacing:.1em;line-height:1.45}
+.surtitre{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);font-weight:500;margin-bottom:14px}
+.surtitre.clair{color:#F7A8D6}
+h1{font-size:clamp(2rem,4.6vw,3.3rem);margin-bottom:18px;color:var(--rose-fonce)}
+.chapo{font-size:clamp(1.02rem,1.6vw,1.18rem);color:var(--gris);max-width:640px}
+
+/* ---------- Sections ---------- */
+.sec{padding:clamp(52px,8vh,86px) 0}
+.fond-clair{background:var(--rose-pale)}
+.fond-sombre{background:var(--rose-fonce);color:#FDEBF6}
+.fond-sombre h2{color:var(--blanc)}
+.tete{text-align:center;max-width:640px;margin:0 auto clamp(32px,5vh,52px)}
+.tete h2{font-size:clamp(1.6rem,3vw,2.3rem);color:var(--rose-fonce)}
+h2{font-size:clamp(1.45rem,2.6vw,2rem);color:var(--rose-fonce);margin-bottom:14px}
+h3{font-size:1.14rem;margin-bottom:8px;color:var(--rose-fonce)}
+p+h2,ul+h2{margin-top:38px}
+p+p{margin-top:14px}
+
+/* ---------- Avantages ---------- */
+.avantages{padding-top:clamp(36px,5vh,56px)}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.trio article{background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--rayon);padding:32px 26px;box-shadow:var(--ombre)}
+.trio .ic{display:inline-flex;align-items:center;justify-content:center;min-width:56px;height:56px;padding:0 12px;border-radius:100px;background:var(--rose-pale);color:var(--rose);font-family:var(--titre);font-size:1.3rem;font-weight:600;margin-bottom:16px}
+.trio h2{font-size:1.16rem;margin-bottom:8px}
+.trio p{font-size:.95rem;color:var(--gris)}
+.lien-fleche{display:inline-block;margin-top:14px;color:var(--rose);font-weight:500;font-size:.92rem}
+.lien-fleche::after{content:" →";transition:.25s;display:inline-block}
+.lien-fleche:hover::after{transform:translateX(4px)}
+
+/* ---------- Cartes ---------- */
+.duo-cartes{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.carte{background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--rayon);padding:clamp(26px,3vw,38px)}
+.duo-cartes.grandes .carte{padding:clamp(30px,3.5vw,44px)}
+.liste-check{list-style:none;margin-top:14px}
+.liste-check li{position:relative;padding-left:28px;margin-bottom:11px;font-size:.97rem}
+.liste-check li::before{content:"";position:absolute;left:0;top:.55em;width:14px;height:7px;border-left:2px solid var(--or);border-bottom:2px solid var(--or);transform:rotate(-45deg)}
+.fond-sombre .liste-check li::before{border-color:#F7A8D6}
+
+/* ---------- Étapes ---------- */
+.etapes{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:e}
+.etapes li{background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--rayon);padding:30px 26px;position:relative}
+.fond-clair .etapes li{background:var(--fond)}
+.num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--rose);color:var(--blanc);font-family:var(--titre);font-weight:600;margin-bottom:14px}
+.etapes p{font-size:.95rem;color:var(--gris)}
+
+/* ---------- Zone ---------- */
+.zone{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,54px);align-items:center}
+.zone p{color:#F6C9E4;margin-bottom:12px}
+.zone strong{color:var(--blanc)}
+.carte-map{border-radius:var(--rayon);overflow:hidden;box-shadow:var(--ombre);background:var(--rose-pale)}
+.carte-map iframe{width:100%;height:340px;border:0}
+.carte-map.large iframe{height:420px}
+
+/* ---------- Avis ---------- */
+.avis-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.avis-grille blockquote{background:var(--blanc);border:1px solid var(--ligne);border-left:3px solid var(--or);border-radius:var(--rayon);padding:26px 24px;font-size:.97rem;color:var(--gris)}
+.avis-grille cite{display:block;margin-top:14px;font-style:normal;font-weight:500;color:var(--rose-fonce);font-size:.9rem}
+
+/* ---------- Encarts ---------- */
+.encart-fort{background:var(--rose-pale);border:1px solid var(--ligne);border-radius:var(--rayon);padding:clamp(26px,3vw,38px);margin:32px 0}
+.encart-fort h2{margin-bottom:10px}
+.encart-tarif{background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--rayon);padding:clamp(28px,3.5vw,44px);max-width:820px;margin:0 auto;text-align:center}
+.alerte-redac{background:#FFF6E6;border:1px solid #F0D9A8;border-radius:var(--rayon);padding:22px 24px;margin-bottom:36px;font-size:.95rem;color:#7A5A1E}
+
+/* ---------- Formulaires ---------- */
+.grille-form{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(30px,4vw,56px);align-items:start}
+.bloc-form{background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--rayon);padding:clamp(26px,3vw,36px);box-shadow:var(--ombre)}
+.formulaire label{display:block;margin-bottom:16px;font-size:.88rem;font-weight:500;color:var(--rose-fonce)}
+.formulaire input,.formulaire select,.formulaire textarea{width:100%;margin-top:6px;padding:12px 14px;border:1px solid var(--ligne);border-radius:9px;font-family:var(--texte);font-size:.97rem;background:var(--fond);color:var(--encre)}
+.formulaire input:focus,.formulaire select:focus,.formulaire textarea:focus{outline:2px solid var(--rose);outline-offset:1px;background:var(--blanc)}
+.duo-champs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.formulaire fieldset{border:0;margin-bottom:16px}
+.formulaire legend{font-size:.88rem;font-weight:500;color:var(--rose-fonce);margin-bottom:8px}
+.radio{display:inline-flex;align-items:center;gap:7px;margin-right:18px;font-weight:400}
+.radio input{width:auto;margin:0}
+.msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
+.infos{margin-top:22px}
+.ligne-info{display:flex;gap:16px;margin-bottom:22px;align-items:flex-start}
+.ic-rond{flex:none;width:42px;height:42px;border-radius:50%;background:var(--rose-pale);color:var(--rose);display:flex;align-items:center;justify-content:center;font-family:var(--titre);font-weight:600}
+.gros-tel{font-size:1.35rem;font-weight:600;color:var(--rose)}
+
+/* ---------- Boutons ---------- */
+.btn{display:inline-block;padding:14px 30px;border-radius:100px;font-family:var(--titre);font-weight:500;font-size:.95rem;transition:.25s;border:1.5px solid transparent;cursor:pointer}
+.btn-plein{background:var(--rose);color:var(--blanc)}
+.btn-plein:hover{background:var(--rose-fonce)}
+.btn-ligne{border-color:var(--blanc);color:var(--blanc)}
+.btn-ligne:hover{background:var(--blanc);color:var(--rose-fonce)}
+.btn-clair{background:var(--blanc);color:var(--rose-fonce);margin-top:8px}
+.btn-clair:hover{background:var(--rose-pale)}
+.btn.large{width:100%}
+
+/* ---------- Bande CTA ---------- */
+.bande-cta{background:var(--rose);color:var(--blanc);text-align:center;padding:clamp(46px,7vh,72px) 0}
+.bande-cta h2{color:var(--blanc);margin-bottom:10px}
+.bande-cta p{color:#FBD6EC;margin-bottom:26px}
+.cta-duo{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.bande-cta .btn-plein{background:var(--blanc);color:var(--rose-fonce)}
+.bande-cta .btn-plein:hover{background:var(--rose-pale)}
+
+/* ---------- Pied ---------- */
+.pied{background:var(--encre);color:#C8BCC4;padding:clamp(44px,6vh,64px) 0 26px;font-size:.93rem}
+.pied .marque-nom{color:var(--blanc)}
+.pied-grille{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
+.pied h3{color:var(--blanc);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.pied a:hover{color:#F7A8D6}
+.pied p{margin-top:10px}
+.pied-bas{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:.85rem;color:#9C8E97}
+
+/* ---------- Mobile ---------- */
+@media(max-width:980px){
+  .trio,.etapes,.avis-grille{grid-template-columns:1fr}
+  .duo-cartes,.zone,.grille-form{grid-template-columns:1fr}
+  .pied-grille{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .burger{display:flex}
+  .marque-sous{display:none}
+  .marque-logo{height:50px}
+  .tel-entete{padding:9px 15px;font-size:.85rem}
+  .menu{position:fixed;inset:0 0 0 auto;width:78%;max-width:300px;background:var(--blanc);flex-direction:column;
+    justify-content:center;gap:22px;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.3,1);
+    box-shadow:-20px 0 60px -30px rgba(0,0,0,.4);padding:40px;z-index:110}
+  .menu-check:checked~.menu{transform:translateX(0)}
+  .menu a{font-size:1.05rem}
+  .duo-champs{grid-template-columns:1fr}
+  .pied-grille{grid-template-columns:1fr}
+  .carte-map iframe{height:260px}
+}
