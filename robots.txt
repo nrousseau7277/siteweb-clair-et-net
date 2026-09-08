@@ -1,0 +1,5 @@
+# Tout le site est ouvert aux moteurs de recherche.
+User-agent: *
+Allow: /
+
+Sitemap: https://cnet77.fr/sitemap.xml
