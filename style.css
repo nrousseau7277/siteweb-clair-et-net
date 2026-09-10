@@ -43,8 +43,6 @@ h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacin
 .entete-in{display:flex;align-items:center;gap:24px;padding-top:11px;padding-bottom:11px}
 .marque{display:flex;align-items:center;gap:12px;margin-right:auto;flex:none;min-width:0}
 .marque-logo{height:60px;width:auto;flex:none}
-.marque-nom{font-family:var(--titre);font-size:1.42rem;font-weight:600;color:var(--rose-fonce)}
-.marque-nom em{font-style:normal;color:var(--or)}
 .menu{display:flex;gap:20px;align-items:center;flex:none}
 .menu a{font-size:.9rem;color:var(--encre);padding:6px 0;border-bottom:2px solid transparent;transition:.25s;white-space:nowrap}
 .menu a:hover{color:var(--rose)}
@@ -159,7 +157,7 @@ p+p{margin-top:14px}
 
 /* ---------- Pied ---------- */
 .pied{background:var(--encre);color:#C8BCC4;padding:clamp(44px,6vh,64px) 0 26px;font-size:.93rem}
-.pied .marque-nom{color:var(--blanc)}
+.pied-logo{height:68px;width:auto;display:block;margin-bottom:4px}
 .pied-grille{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
 .pied h3{color:var(--blanc);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
 .pied a:hover{color:#F7A8D6}
