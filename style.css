@@ -108,6 +108,8 @@ p+p{margin-top:14px}
 .carte-map{border-radius:var(--rayon);overflow:hidden;box-shadow:var(--ombre);background:var(--rose-pale)}
 .carte-map iframe{width:100%;height:340px;border:0}
 .carte-map.large iframe{height:420px}
+.grille-form .carte-map{align-self:stretch}
+.grille-form .carte-map iframe{height:100%;min-height:430px}
 
 /* ---------- Avis ---------- */
 .avis-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -147,6 +149,16 @@ p+p{margin-top:14px}
 .ligne-info{display:flex;gap:16px;margin-bottom:22px;align-items:flex-start}
 .ic-rond{flex:none;width:42px;height:42px;border-radius:50%;background:var(--rose-pale);color:var(--rose);display:flex;align-items:center;justify-content:center;font-family:var(--titre);font-weight:600}
 .gros-tel{font-size:1.35rem;font-weight:600;color:var(--rose)}
+
+
+/* Tableau des horaires d'ouverture */
+.titre-horaires{margin-top:30px;margin-bottom:12px}
+.horaires{width:100%;border-collapse:collapse;font-size:.95rem;max-width:380px}
+.horaires td{padding:9px 0;border-bottom:1px solid var(--ligne)}
+.horaires td:last-child{text-align:right;font-weight:500;color:var(--rose-fonce)}
+.horaires tr:last-child td{border-bottom:0}
+.horaires tr.ferme td{color:var(--gris)}
+.horaires tr.ferme td:last-child{font-weight:400;color:var(--gris)}
 
 /* ---------- Boutons ---------- */
 .btn{display:inline-block;padding:14px 30px;border-radius:100px;font-family:var(--titre);font-weight:500;font-size:.95rem;transition:.25s;border:1.5px solid transparent;cursor:pointer}

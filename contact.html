@@ -20,7 +20,11 @@
   "url":"https://cnet77.fr",
   "address":{"@type":"PostalAddress","addressLocality":"Bussy-Saint-Georges","postalCode":"77600","addressCountry":"FR"},
   "geo":{"@type":"GeoCoordinates","latitude":48.8349044,"longitude":2.7081579},
-  "areaServed":["Bussy-Saint-Georges","Serris","Montévrain","Lagny-sur-Marne","Torcy","Chessy","Collégien"]
+  "areaServed":["Bussy-Saint-Georges","Serris","Montévrain","Lagny-sur-Marne","Torcy","Chessy","Collégien"],
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Thursday","Friday"],"opens":"09:00","closes":"19:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"09:00","closes":"12:00"}
+  ]
 }
 </script>
 </head>
@@ -55,7 +59,6 @@
 </section>
 
 <main id="contenu">
-
 <section class="sec">
   <div class="wrap grille-form">
     <div>
@@ -63,55 +66,28 @@
       <div class="infos">
         <div class="ligne-info"><span class="ic-rond">T</span><div><h3>Téléphone</h3><p><a href="tel:0650944665" class="gros-tel">06 50 94 46 65</a></p></div></div>
         <div class="ligne-info"><span class="ic-rond">@</span><div><h3>E-mail</h3><p>[ adresse e-mail à ajouter ]</p></div></div>
-        <div class="ligne-info"><span class="ic-rond">H</span><div><h3>Horaires</h3><p>[ jours et heures d'ouverture à préciser ]</p></div></div>
-        <div class="ligne-info"><span class="ic-rond">Z</span><div><h3>Zone d'intervention</h3><p>Bussy-Saint-Georges et communes alentours.<br>[ liste à confirmer ]</p></div></div>
+        <div class="ligne-info"><span class="ic-rond">A</span><div><h3>Adresse</h3><p>7 avenue Jacques Cartier<br>77600 Bussy-Saint-Georges<br><a href="https://www.google.com/maps/place/Clair+%26+Net/@48.834904,2.708158,20354m/data=!3m1!1e3!4m6!3m5!1s0x47e6058aa24a8785:0x2dcdba68c5a308f9!8m2!3d48.8349044!4d2.7081579!16s%2Fg%2F11s86q24wj?hl=fr-FR" target="_blank" rel="noopener" class="lien-fleche">Voir sur Google Maps</a></p></div></div>
+        <div class="ligne-info"><span class="ic-rond">Z</span><div><h3>Zone d'intervention</h3><p>Bussy-Saint-Georges, Serris, Chessy, Montévrain, Collégien, Lagny-sur-Marne, Torcy.</p></div></div>
       </div>
+
+      <h3 class="titre-horaires">Horaires d'ouverture</h3>
+      <table class="horaires">
+        <tr><td>Lundi</td><td>09:00 – 19:00</td></tr>
+        <tr><td>Mardi</td><td>09:00 – 19:00</td></tr>
+        <tr><td>Mercredi</td><td>09:00 – 12:00</td></tr>
+        <tr><td>Jeudi</td><td>09:00 – 19:00</td></tr>
+        <tr><td>Vendredi</td><td>09:00 – 19:00</td></tr>
+        <tr class="ferme"><td>Samedi</td><td>Fermé</td></tr>
+        <tr class="ferme"><td>Dimanche</td><td>Fermé</td></tr>
+      </table>
     </div>
-    <div class="bloc-form">
-
-      <form class="formulaire" onsubmit="event.preventDefault();this.querySelector('.msg-ok').hidden=false;">
-        <div class="duo-champs">
-          <label>Prénom <input type="text" name="prenom" required></label>
-          <label>Nom <input type="text" name="nom" required></label>
-        </div>
-        <div class="duo-champs">
-          <label>E-mail <input type="email" name="email" required></label>
-          <label>Téléphone <span class="fac">(facultatif)</span> <input type="tel" name="tel"></label>
-        </div>
-        <label>Votre commune <input type="text" name="ville" required></label>
-        <label>De quoi avez-vous besoin ? <span class="fac">(facultatif)</span>
-          <select name="besoin">
-            <option>Ménage régulier</option>
-            <option>Grand nettoyage ponctuel</option>
-            <option>Emménagement ou déménagement</option>
-            <option>Remise en état après travaux</option>
-            <option>Repassage</option>
-            <option>Nettoyage des vitres</option>
-            <option>Je ne sais pas encore</option>
-          </select>
-        </label>
-        <label>Votre message <span class="fac">(facultatif)</span> <textarea name="message" rows="5" placeholder="Surface du logement, fréquence souhaitée, jours qui vous arrangent…"></textarea></label>
-        <fieldset><legend>Vous préférez être recontacté par</legend>
-          <label class="radio"><input type="radio" name="canal" value="tel" checked> Téléphone</label>
-          <label class="radio"><input type="radio" name="canal" value="mail"> E-mail</label>
-        </fieldset>
-        <button type="submit" class="btn btn-plein large">Envoyer ma demande</button>
-        <p class="msg-ok" hidden>Formulaire de démonstration. En ligne, la demande arriverait dans votre boîte mail.</p>
-        <p class="note">Réponse sous 24 h ouvrées. Aucune donnée n'est transmise à des tiers.</p>
-      </form>
-
-    </div>
-  </div>
-</section>
-
-<section class="sec fond-clair">
-  <div class="wrap">
     <div class="carte-map large">
-      <iframe src="https://www.google.com/maps?q=Bussy-Saint-Georges%2C%2077600&hl=fr&z=13&output=embed" title="Clair & Net, Bussy-Saint-Georges" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe src="https://www.google.com/maps?q=Clair+%26+Net,+7+avenue+Jacques+Cartier,+77600+Bussy-Saint-Georges&amp;ll=48.8349044,2.7081579&amp;hl=fr&amp;z=16&amp;output=embed"
+              title="Clair &amp; Net, 7 avenue Jacques Cartier à Bussy-Saint-Georges"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
   </div>
 </section>
-
 </main>
 
 <section class="bande-cta">
