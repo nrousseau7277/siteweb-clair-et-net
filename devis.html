@@ -81,10 +81,10 @@
         </div>
         <div class="duo-champs">
           <label>E-mail <input type="email" name="email" required></label>
-          <label>Téléphone <input type="tel" name="tel" required></label>
+          <label>Téléphone <span class="fac">(facultatif)</span> <input type="tel" name="tel"></label>
         </div>
         <label>Votre commune <input type="text" name="ville" required></label>
-        <label>De quoi avez-vous besoin ?
+        <label>De quoi avez-vous besoin ? <span class="fac">(facultatif)</span>
           <select name="besoin">
             <option>Ménage régulier</option>
             <option>Grand nettoyage ponctuel</option>
@@ -95,7 +95,7 @@
             <option>Je ne sais pas encore</option>
           </select>
         </label>
-        <label>Votre message <textarea name="message" rows="5" placeholder="Surface du logement, fréquence souhaitée, jours qui vous arrangent…"></textarea></label>
+        <label>Votre message <span class="fac">(facultatif)</span> <textarea name="message" rows="5" placeholder="Surface du logement, fréquence souhaitée, jours qui vous arrangent…"></textarea></label>
         <fieldset><legend>Vous préférez être recontacté par</legend>
           <label class="radio"><input type="radio" name="canal" value="tel" checked> Téléphone</label>
           <label class="radio"><input type="radio" name="canal" value="mail"> E-mail</label>

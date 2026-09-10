@@ -123,6 +123,7 @@ p+p{margin-top:14px}
 /* ---------- Formulaires ---------- */
 .grille-form{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(30px,4vw,56px);align-items:start}
 .bloc-form{background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--rayon);padding:clamp(26px,3vw,36px);box-shadow:var(--ombre)}
+.fac{font-weight:400;color:var(--gris);font-size:.82rem;letter-spacing:0}
 .formulaire label{display:block;margin-bottom:16px;font-size:.88rem;font-weight:500;color:var(--rose-fonce)}
 .formulaire input,.formulaire select,.formulaire textarea{width:100%;margin-top:6px;padding:12px 14px;border:1px solid var(--ligne);border-radius:9px;font-family:var(--texte);font-size:.97rem;background:var(--fond);color:var(--encre)}
 .formulaire input:focus,.formulaire select:focus,.formulaire textarea:focus{outline:2px solid var(--rose);outline-offset:1px;background:var(--blanc)}
