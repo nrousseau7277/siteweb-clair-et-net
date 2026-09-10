@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/credit-dimpot", "destination": "/credit-impot", "permanent": true },
+    { "source": "/demande-de-devis", "destination": "/devis", "permanent": true },
+    { "source": "/qui-sommes-nous", "destination": "/", "permanent": true },
+    { "source": "/formulaire-de-contact", "destination": "/contact", "permanent": true }
+  ]
+}
