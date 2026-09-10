@@ -174,7 +174,10 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
 .btn.large{width:100%}
 
 /* ---------- Bande CTA ---------- */
-.bande-cta{background:var(--rose);color:var(--blanc);text-align:center;padding:clamp(46px,7vh,72px) 0}
+/* La bande descend du rose vif vers le rose profond, pour rejoindre
+   le pied de page sans rupture brutale. */
+.bande-cta{background:linear-gradient(175deg,var(--rose) 0%,var(--rose-fonce) 100%);
+  color:var(--blanc);text-align:center;padding:clamp(46px,7vh,72px) 0}
 .bande-cta h2{color:var(--blanc);margin-bottom:10px}
 .bande-cta p{color:#FBD6EC;margin-bottom:26px}
 .cta-duo{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
@@ -182,7 +185,7 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
 .bande-cta .btn-plein:hover{background:var(--rose-pale)}
 
 /* ---------- Pied ---------- */
-.pied{background:var(--encre);color:#C8BCC4;padding:clamp(44px,6vh,64px) 0 26px;font-size:.93rem}
+.pied{background:#1C0F17;color:#C8BCC4;padding:clamp(44px,6vh,64px) 0 26px;font-size:.93rem}
 .pied-logo{height:68px;width:auto;display:block;margin-bottom:4px}
 .pied-grille{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
 .pied h3{color:var(--blanc);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
