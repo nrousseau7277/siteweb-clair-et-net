@@ -145,6 +145,9 @@ p+p{margin-top:14px}
 .radio{display:inline-flex;align-items:center;gap:7px;margin-right:18px;font-weight:400}
 .radio input{width:auto;margin:0}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
+.msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}
+.msg-ko a{color:#8A3232;text-decoration:underline}
+form [type="submit"]:disabled{opacity:.6;cursor:wait}
 .infos{margin-top:22px}
 .ligne-info{display:flex;gap:16px;margin-bottom:22px;align-items:flex-start}
 .ic-rond{flex:none;width:42px;height:42px;border-radius:50%;background:var(--rose-pale);color:var(--rose);display:flex;align-items:center;justify-content:center;font-family:var(--titre);font-weight:600}

@@ -63,7 +63,7 @@
 <section class="sec">
   <div class="wrap form-seul">
     <div class="bloc-form">
-      <form class="formulaire" onsubmit="event.preventDefault();this.querySelector('.msg-ok').hidden=false;">
+      <form class="formulaire" data-endpoint="https://formspree.io/f/VOTRE_IDENTIFIANT" data-sujet="Candidature">
         <div class="duo-champs">
           <label>Prénom <input type="text" required></label>
           <label>Nom <input type="text" required></label>
@@ -80,7 +80,8 @@
         </label>
         <label>Votre message <textarea rows="5" placeholder="Votre expérience, vos disponibilités, votre secteur…"></textarea></label>
         <button type="submit" class="btn btn-plein large">Envoyer ma candidature</button>
-        <p class="msg-ok" hidden>Formulaire de démonstration.</p>
+        <p class="msg-ok" hidden>Merci, votre candidature est bien partie. Nous vous répondrons rapidement.</p>
+        <p class="msg-ko" hidden>L'envoi n'a pas fonctionné. Écrivez-nous à <a href="mailto:nrousseau@cnet77.fr">nrousseau@cnet77.fr</a>.</p>
       </form>
     </div>
   </div>

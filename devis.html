@@ -75,7 +75,7 @@
     </div>
     <div class="bloc-form">
 
-      <form class="formulaire" onsubmit="event.preventDefault();this.querySelector('.msg-ok').hidden=false;">
+      <form class="formulaire" data-endpoint="https://formspree.io/f/VOTRE_IDENTIFIANT" data-sujet="Demande de devis">
         <div class="duo-champs">
           <label>Prénom <input type="text" name="prenom" required></label>
           <label>Nom <input type="text" name="nom" required></label>
@@ -102,7 +102,8 @@
           <label class="radio"><input type="radio" name="canal" value="mail"> E-mail</label>
         </fieldset>
         <button type="submit" class="btn btn-plein large">Envoyer ma demande</button>
-        <p class="msg-ok" hidden>Formulaire de démonstration. En ligne, la demande arriverait dans votre boîte mail.</p>
+        <p class="msg-ok" hidden>Merci, votre demande est bien partie. Nous revenons vers vous sous 24 h ouvrées.</p>
+        <p class="msg-ko" hidden>L'envoi n'a pas fonctionné. Écrivez-nous à <a href="mailto:nrousseau@cnet77.fr">nrousseau@cnet77.fr</a> ou appelez le <a href="tel:0650944665">06 50 94 46 65</a>.</p>
         <p class="note">Réponse sous 24 h ouvrées. Aucune donnée n'est transmise à des tiers.</p>
       </form>
 
