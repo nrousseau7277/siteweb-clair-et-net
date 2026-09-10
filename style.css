@@ -129,6 +129,8 @@ p+p{margin-top:14px}
 .alerte-redac{background:#FFF6E6;border:1px solid #F0D9A8;border-radius:var(--rayon);padding:22px 24px;margin-bottom:36px;font-size:.95rem;color:#7A5A1E}
 
 /* ---------- Formulaires ---------- */
+/* Formulaire seul, sans colonne de texte a cote : on le centre. */
+.form-seul{max-width:640px;margin:0 auto}
 .grille-form{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(30px,4vw,56px);align-items:start}
 .bloc-form{background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--rayon);padding:clamp(26px,3vw,36px);box-shadow:var(--ombre)}
 .fac{font-weight:400;color:var(--gris);font-size:.82rem;letter-spacing:0}
@@ -180,7 +182,9 @@ p+p{margin-top:14px}
 
 @media(max-width:980px){
   .trio,.etapes,.avis-grille{grid-template-columns:1fr}
-  .duo-cartes,.zone,.grille-form{grid-template-columns:1fr}
+  .duo-cartes,.zone,/* Formulaire seul, sans colonne de texte a cote : on le centre. */
+.form-seul{max-width:640px;margin:0 auto}
+.grille-form{grid-template-columns:1fr}
   .pied-grille{grid-template-columns:1fr 1fr}
 }
 @media(max-width:940px){
