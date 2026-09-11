@@ -24,6 +24,13 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:var(--texte);color:var(--encre);background:var(--fond);line-height:1.7;font-size:16.5px;-webkit-font-smoothing:antialiased}
+/* Le panneau du menu mobile est gare hors ecran a droite (translateX(100%)).
+   Sans ce clip, il etire la page et le telephone defile de 292 px vers la droite.
+   'clip' plutot que 'hidden' : 'hidden' ne corrige pas le debordement ici et
+   transformerait la page en conteneur de defilement, au risque de casser
+   l'en-tete en position sticky. Les deux selecteurs sont necessaires. */
+html,body{overflow-x:clip}
+
 img,iframe{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacing:-.015em}
@@ -156,6 +163,22 @@ p+p{margin-top:14px}
 .formulaire input.invalide:focus,
 .formulaire select.invalide:focus,
 .formulaire textarea.invalide:focus{outline:2px solid #D92D20;outline-offset:1px}
+/* Page mentions legales */
+.etroit h2{margin:44px 0 14px}
+.etroit h3{margin:26px 0 8px;font-size:1.02rem}
+.etroit h2:first-child{margin-top:0}
+.tableau-legal{width:100%;border-collapse:collapse;margin:16px 0 6px;font-size:.93rem}
+.tableau-legal th{text-align:left;padding:10px 12px;background:var(--rose-pale);
+  color:var(--rose-fonce);font-weight:600;border-bottom:1px solid #F0D5E6}
+.tableau-legal td{padding:11px 12px;border-bottom:1px solid #EFE7EC;vertical-align:top}
+.tableau-legal tr:last-child td{border-bottom:none}
+@media(max-width:620px){
+  .tableau-legal,.tableau-legal tbody,.tableau-legal tr,.tableau-legal td{display:block;width:100%}
+  .tableau-legal thead{display:none}
+  .tableau-legal tr{margin-bottom:14px;border:1px solid #EFE7EC;border-radius:12px;padding:4px 0}
+  .tableau-legal td{border-bottom:none;padding:7px 13px}
+  .tableau-legal td:first-child{font-weight:600;color:var(--rose-fonce)}
+}
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}
