@@ -9,7 +9,7 @@
   --rose:#E6009A;
   --rose-vif:#FC00A8;
   --rose-fonce:#A8006E;
-  --rose-pale:#FDEBF6;
+  --rose-pale:#FDEBF6; --rose-haut:#FEF4FA;
   --or:#A89000; --jaune-google:#FBBC04;
   --encre:#171317;
   --gris:#6E626B;
@@ -63,7 +63,7 @@ h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacin
    defile, elle passe au blanc pour se detacher du contenu, avec une ombre
    tres legere a la place du trait. Sans JavaScript elle reste rose pale :
    toujours lisible, simplement sans le passage au blanc. */
-.entete{position:sticky;top:0;z-index:100;background:var(--rose-pale);
+.entete{position:sticky;top:0;z-index:100;background:var(--rose-haut);
   transition:background .25s ease,box-shadow .25s ease}
 .entete.defile{background:var(--blanc);box-shadow:0 6px 22px -18px rgba(23,19,23,.55)}
 .entete-in{display:flex;align-items:center;gap:24px;padding-top:11px;padding-bottom:11px}
@@ -88,7 +88,9 @@ h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacin
 
 /* ---------- Hero ---------- */
 /* Pas de trait sous le bandeau du haut : le degrade suffit a marquer la separation. */
-.hero-grand,.hero-court{background:linear-gradient(165deg,var(--rose-pale),var(--fond) 70%)}
+/* Le haut de page part d'un rose tres clair, la meme teinte que la barre
+   au-dessus, et s'eclaircit vers le fond de page. */
+.hero-grand,.hero-court{background:linear-gradient(165deg,var(--rose-haut),var(--fond) 70%)}
 .hero-grand .wrap{padding-top:clamp(56px,8vh,96px);padding-bottom:clamp(48px,7vh,84px);max-width:900px}
 .hero-court .wrap{padding-top:clamp(40px,6vh,68px);padding-bottom:clamp(34px,5vh,56px);max-width:900px}
 .surtitre{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);font-weight:500;margin-bottom:14px}
