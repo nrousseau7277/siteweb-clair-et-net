@@ -122,3 +122,31 @@
     });
   });
 })();
+
+
+/* ============================================================
+   Plan d'acces charge sur demande
+   Google Maps depose des cookies des que la carte s'affiche.
+   Tant que personne ne clique, aucune requete ne part : le site
+   reste sans cookie, donc sans bandeau de consentement.
+   ============================================================ */
+(function () {
+  var zones = document.querySelectorAll('.carte-attente[data-carte]');
+  if (!zones.length) return;
+
+  zones.forEach(function (zone) {
+    var bouton = zone.querySelector('button');
+    if (!bouton) return;
+
+    bouton.addEventListener('click', function () {
+      var cadre = document.createElement('iframe');
+      cadre.src = zone.dataset.carte;
+      cadre.title = zone.dataset.titre || 'Plan d\'acces';
+      cadre.loading = 'lazy';
+      cadre.referrerPolicy = 'no-referrer-when-downgrade';
+      cadre.allowFullscreen = true;
+      cadre.style.height = getComputedStyle(zone).height;
+      zone.parentNode.replaceChild(cadre, zone);
+    });
+  });
+})();

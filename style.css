@@ -179,6 +179,15 @@ p+p{margin-top:14px}
   .tableau-legal td{border-bottom:none;padding:7px 13px}
   .tableau-legal td:first-child{font-weight:600;color:var(--rose-fonce)}
 }
+/* Plan d'acces : charge seulement si la personne le demande.
+   Tant qu'on n'a pas clique, aucune requete vers Google, donc aucun cookie
+   et aucun bandeau de consentement a afficher. */
+.carte-attente{min-height:320px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:16px;padding:34px 26px;text-align:center;
+  background:var(--rose-pale);border-radius:var(--rayon)}
+.carte-adr{margin:0;color:var(--encre);line-height:1.55}
+.carte-note{margin:0;max-width:330px;font-size:.8rem;color:#6E626B;line-height:1.5}
+.carte-map iframe{display:block;width:100%;border:0}
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}
