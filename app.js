@@ -333,3 +333,29 @@
     minuteur = setTimeout(function () { ruban.classList.remove('fige'); }, 2500);
   }, { passive: true });
 })();
+
+
+/* ============================================================
+   Barre du haut
+   Au repos elle a la meme couleur que le bandeau juste en dessous,
+   pour qu'aucune marche de couleur n'apparaisse. Des que la page
+   defile, elle passe au blanc et se detache du contenu.
+   ============================================================ */
+(function () {
+  var barre = document.querySelector('.entete');
+  if (!barre) return;
+
+  var enCours = false;
+  function majuscule() {
+    barre.classList.toggle('defile', window.scrollY > 8);
+    enCours = false;
+  }
+  // On ne recalcule qu'une fois par image affichee, pas a chaque pixel.
+  window.addEventListener('scroll', function () {
+    if (enCours) return;
+    enCours = true;
+    window.requestAnimationFrame(majuscule);
+  }, { passive: true });
+
+  majuscule();
+})();

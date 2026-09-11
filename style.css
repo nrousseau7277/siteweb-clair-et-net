@@ -58,7 +58,14 @@ h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacin
 .saut:focus{left:12px;top:12px;background:var(--blanc);padding:12px 18px;z-index:200;border-radius:8px}
 
 /* ---------- En-tête ---------- */
-.entete{position:sticky;top:0;z-index:100;background:rgba(251,253,253,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--ligne)}
+/* En haut de page, la barre reprend exactement la teinte du bandeau qui la
+   suit : aucune marche de couleur, ni trait de separation. Des que la page
+   defile, elle passe au blanc pour se detacher du contenu, avec une ombre
+   tres legere a la place du trait. Sans JavaScript elle reste rose pale :
+   toujours lisible, simplement sans le passage au blanc. */
+.entete{position:sticky;top:0;z-index:100;background:var(--rose-pale);
+  transition:background .25s ease,box-shadow .25s ease}
+.entete.defile{background:var(--blanc);box-shadow:0 6px 22px -18px rgba(23,19,23,.55)}
 .entete-in{display:flex;align-items:center;gap:24px;padding-top:11px;padding-bottom:11px}
 .marque{display:flex;align-items:center;gap:12px;margin-right:auto;flex:none;min-width:0}
 .marque-logo{height:60px;width:auto;flex:none}
