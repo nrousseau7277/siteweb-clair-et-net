@@ -10,7 +10,7 @@
   --rose-vif:#FC00A8;
   --rose-fonce:#A8006E;
   --rose-pale:#FDEBF6;
-  --or:#A89000;
+  --or:#A89000; --jaune-google:#FBBC04;
   --encre:#171317;
   --gris:#6E626B;
   --ligne:#F3DDEB;
@@ -144,7 +144,7 @@ p+p{margin-top:14px}
 
 /* ---------- Avis ---------- */
 .avis-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.avis-grille blockquote{background:var(--blanc);border:1px solid var(--ligne);border-left:3px solid var(--or);border-radius:var(--rayon);padding:26px 24px;font-size:.97rem;color:var(--gris)}
+.avis-grille blockquote{background:var(--blanc);border:1px solid var(--ligne);border-left:3px solid var(--jaune-google);border-radius:var(--rayon);padding:26px 24px;font-size:.97rem;color:var(--gris)}
 /* Les avis n'ont pas la meme longueur : sans cela la signature suit la fin
    du texte et tombe a trois hauteurs differentes. On la colle au bas de la carte. */
 .avis-grille blockquote{display:flex;flex-direction:column}
@@ -155,7 +155,7 @@ p+p{margin-top:14px}
 .avis-note{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;
   margin-bottom:30px;font-size:1.02rem;color:var(--gris)}
 .avis-note strong{font-family:var(--titre);font-size:1.7rem;color:var(--rose-fonce)}
-.etoiles{color:var(--or);letter-spacing:.12em;font-size:1.05rem}
+.etoiles{color:var(--jaune-google);letter-spacing:.12em;font-size:1.05rem}
 .avis-grille blockquote .etoiles{display:block;margin-bottom:10px;font-size:.95rem}
 
 /* ---------- Encarts ---------- */
