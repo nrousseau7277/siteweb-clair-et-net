@@ -209,9 +209,13 @@ p+p{margin-top:14px}
 /* Plan d'acces : charge seulement si la personne le demande.
    Tant qu'on n'a pas clique, aucune requete vers Google, donc aucun cookie
    et aucun bandeau de consentement a afficher. */
-.carte-attente{min-height:320px;display:flex;flex-direction:column;align-items:center;
+.carte-attente{min-height:320px;height:100%;display:flex;flex-direction:column;align-items:center;
   justify-content:center;gap:16px;padding:34px 26px;text-align:center;
   background:var(--rose-pale);border-radius:var(--rayon)}
+/* L'encadre d'attente occupe exactement la place que prendra le plan :
+   au clic, l'un remplace l'autre sans que la page ne bouge. */
+.carte-map.large .carte-attente{min-height:420px}
+.grille-form .carte-attente{min-height:430px}
 .carte-adr{margin:0;color:var(--encre);line-height:1.55}
 .carte-note{margin:0;max-width:330px;font-size:.8rem;color:#6E626B;line-height:1.5}
 .carte-map iframe{display:block;width:100%;border:0}

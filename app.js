@@ -145,7 +145,8 @@
       cadre.loading = 'lazy';
       cadre.referrerPolicy = 'no-referrer-when-downgrade';
       cadre.allowFullscreen = true;
-      cadre.style.height = getComputedStyle(zone).height;
+      // Pas de hauteur en style direct : elle ecraserait la regle CSS
+      // qui fait remplir le conteneur, et laisserait une zone vide dessous.
       zone.parentNode.replaceChild(cadre, zone);
     }
 
