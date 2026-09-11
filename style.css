@@ -48,7 +48,6 @@ a:focus-visible,button:focus-visible,label:focus-visible{
 .menu-check:focus-visible~.burger{outline:2px solid var(--rose);outline-offset:4px;border-radius:6px}
 h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacing:-.015em}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
-.etroit{max-width:760px}
 .centre{text-align:center}
 /* Un bouton ou une note centres, places juste apres une grille de cartes,
    ont besoin de respirer. Sans ca ils se collent au bord des cartes. */
@@ -197,9 +196,7 @@ p+p{margin-top:14px}
 .formulaire select.invalide:focus,
 .formulaire textarea.invalide:focus{outline:2px solid #D92D20;outline-offset:1px}
 /* Page mentions legales */
-.etroit h2{margin:44px 0 14px}
 .etroit h3{margin:26px 0 8px;font-size:1.02rem}
-.etroit h2:first-child{margin-top:0}
 .tableau-legal{width:100%;border-collapse:collapse;margin:16px 0 6px;font-size:.93rem}
 .tableau-legal th{text-align:left;padding:10px 12px;background:var(--rose-pale);
   color:var(--rose-fonce);font-weight:600;border-bottom:1px solid #F0D5E6}
@@ -321,6 +318,34 @@ html.anim .hero-grand .cta-duo{animation-delay:.2s}
 @media(prefers-reduced-motion:reduce){
   .avis-piste{animation:none}
 }
+/* ---- Pages de texte long (credit d'impot, mentions legales) ---------
+   Le contenu n'est pas touche : seule sa mise en page change.
+   La colonne faisait 760 px, soit environ 93 caracteres par ligne :
+   l'oeil perd sa ligne en revenant a la marge. On resserre autour de
+   75 caracteres, on aere les paragraphes et on sort les listes du flot
+   du texte pour donner des points de respiration. */
+.etroit{max-width:660px;font-size:17.2px;line-height:1.78}
+.etroit p{margin:0 0 22px}
+.etroit > p:last-child{margin-bottom:0}
+.etroit h2{margin:0 0 18px;font-size:1.6rem}
+.etroit h2:not(:first-child){margin-top:52px}
+
+/* Les deux listes deviennent des encarts : elles decoupent le mur de
+   texte et se reperent d'un coup d'oeil en parcourant la page. */
+.etroit .liste-check,.etroit .liste-num{background:var(--rose-pale);
+  border-radius:var(--rayon);padding:24px 28px;margin:0 0 24px}
+.etroit .liste-check li,.etroit .liste-num li{font-size:1rem}
+.etroit .liste-check li:last-child,.etroit .liste-num li:last-child{margin-bottom:0}
+.etroit .liste-check{margin-top:0}
+
+/* La liste numerotee n'avait aucun style : elle s'affichait avec les
+   puces brutes du navigateur. */
+.liste-num{list-style:none;counter-reset:etape;padding:0}
+.liste-num li{counter-increment:etape;position:relative;padding-left:36px;margin-bottom:12px}
+.liste-num li::before{content:counter(etape);position:absolute;left:0;top:.12em;
+  width:24px;height:24px;border-radius:50%;background:var(--rose);color:var(--blanc);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--titre);font-size:.8rem;font-weight:600}
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}
