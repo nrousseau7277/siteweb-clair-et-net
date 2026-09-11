@@ -196,6 +196,30 @@ p+p{margin-top:14px}
 @media(max-width:620px){
   .hero-grand h1{font-size:min(6vw,2rem)}
 }
+/* Bandeau de consentement. Barre discrete en bas, jamais un mur :
+   la page reste lisible et utilisable tant qu'on n'a pas repondu. */
+.bandeau-cookies{position:fixed;left:0;right:0;bottom:0;z-index:200;
+  background:var(--blanc);border-top:1px solid var(--ligne);
+  box-shadow:0 -14px 40px -22px rgba(0,0,0,.35);
+  transform:translateY(100%);transition:transform .4s cubic-bezier(.2,.7,.3,1)}
+.bandeau-cookies.visible{transform:translateY(0)}
+.bandeau-in{max-width:1180px;margin:0 auto;padding:18px 26px;
+  display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.bandeau-txt{margin:0;flex:1 1 380px;font-size:.88rem;line-height:1.55;color:#4A3F47}
+.bandeau-txt a{color:var(--rose-fonce);text-decoration:underline}
+.bandeau-btns{display:flex;gap:11px;flex:none}
+/* Refuser doit peser autant qu'accepter : meme taille, meme allure de bouton,
+   cote a cote. Un « Refuser » en simple texte face a un « Accepter » colore
+   est precisement le procede que la CNIL sanctionne. */
+.bandeau-btns .btn{padding:11px 24px;font-size:.88rem}
+.bandeau-btns .btn-clair{background:var(--blanc);color:var(--rose-fonce);
+  border:1.5px solid var(--rose);margin-top:0}
+.bandeau-btns .btn-clair:hover{background:var(--rose-pale)}
+@media(max-width:620px){
+  .bandeau-in{padding:16px 20px;gap:15px}
+  .bandeau-btns{width:100%}
+  .bandeau-btns .btn{flex:1;text-align:center}
+}
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}

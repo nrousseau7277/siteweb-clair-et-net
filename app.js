@@ -138,7 +138,7 @@
     var bouton = zone.querySelector('button');
     if (!bouton) return;
 
-    bouton.addEventListener('click', function () {
+    function afficher() {
       var cadre = document.createElement('iframe');
       cadre.src = zone.dataset.carte;
       cadre.title = zone.dataset.titre || 'Plan d\'acces';
@@ -147,6 +147,83 @@
       cadre.allowFullscreen = true;
       cadre.style.height = getComputedStyle(zone).height;
       zone.parentNode.replaceChild(cadre, zone);
+    }
+
+    bouton.addEventListener('click', afficher);
+
+    // Si la personne a deja accepte les cookies, le plan s'affiche
+    // directement : inutile de lui demander deux fois.
+    try {
+      if (localStorage.getItem('cnet-consentement') === 'oui') afficher();
+    } catch (e) {}
+
+    document.addEventListener('consentement', function (ev) {
+      if (ev.detail === 'oui' && document.body.contains(zone)) afficher();
     });
+  });
+})();
+
+
+/* ============================================================
+   Bandeau de consentement
+   Il commande reellement le chargement du plan Google Maps :
+   tant qu'il n'y a pas d'accord, aucune requete ne part vers Google.
+   Refuser est aussi simple qu'accepter, comme l'exige la CNIL.
+   Le choix est garde dans le navigateur de la personne, rien n'est
+   envoye nulle part.
+   ============================================================ */
+(function () {
+  var CLE = 'cnet-consentement';
+
+  function lire() {
+    try { return localStorage.getItem(CLE); } catch (e) { return null; }
+  }
+  function ecrire(v) {
+    try { localStorage.setItem(CLE, v); } catch (e) {}
+  }
+
+  // Previent le reste du site qu'un choix vient d'etre fait
+  function diffuser(v) {
+    document.dispatchEvent(new CustomEvent('consentement', { detail: v }));
+  }
+
+  function construire() {
+    var b = document.createElement('div');
+    b.className = 'bandeau-cookies';
+    b.setAttribute('role', 'dialog');
+    b.setAttribute('aria-label', 'Gestion des cookies');
+    b.innerHTML =
+      '<div class="bandeau-in">' +
+        '<p class="bandeau-txt">Ce site n\'utilise aucun traceur publicitaire et ne mesure pas votre navigation. ' +
+        'Seul le plan d\'accès, fourni par Google Maps, peut déposer des cookies — et seulement si vous l\'acceptez. ' +
+        '<a href="/mentions-legales">En savoir plus</a></p>' +
+        '<div class="bandeau-btns">' +
+          '<button type="button" class="btn btn-clair" data-choix="non">Refuser</button>' +
+          '<button type="button" class="btn btn-plein" data-choix="oui">Accepter</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(b);
+
+    b.addEventListener('click', function (e) {
+      var bt = e.target.closest('[data-choix]');
+      if (!bt) return;
+      var v = bt.dataset.choix;
+      ecrire(v);
+      b.remove();
+      diffuser(v);
+    });
+    // laisse le temps au navigateur de peindre avant l'animation
+    requestAnimationFrame(function () { b.classList.add('visible'); });
+  }
+
+  if (!lire()) construire();
+
+  // Lien « Gérer les cookies » du pied de page
+  document.addEventListener('click', function (e) {
+    var l = e.target.closest('[data-gerer-cookies]');
+    if (!l) return;
+    e.preventDefault();
+    if (document.querySelector('.bandeau-cookies')) return;
+    construire();
   });
 })();
