@@ -301,9 +301,9 @@ html.anim .hero-grand .cta-duo{animation-delay:.2s}
 .avis-piste{display:flex;gap:22px;width:max-content;padding:4px 0;
   animation:defile-avis 46s linear infinite}
 .avis-piste blockquote{flex:none;width:min(360px,78vw);margin:0}
-/* On suspend des qu'on survole, qu'on navigue au clavier ou qu'on fait
-   glisser : personne ne doit courir apres un texte pour le lire. */
-.avis-ruban:hover .avis-piste,
+/* Le survol de la souris ne suspend pas le defilement : il continue.
+   On garde la pause au clavier et pendant un glissement, sinon il serait
+   impossible de faire defiler a la main ou de lire en naviguant au clavier. */
 .avis-ruban:focus-within .avis-piste,
 .avis-ruban.fige .avis-piste{animation-play-state:paused}
 @keyframes defile-avis{from{transform:translateX(0)}
