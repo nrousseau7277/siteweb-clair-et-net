@@ -75,7 +75,10 @@
     </div>
     <div class="bloc-form">
 
-      <form class="formulaire" data-endpoint="https://formspree.io/f/VOTRE_IDENTIFIANT" data-sujet="Demande de devis">
+      <form class="formulaire" data-endpoint="https://api.web3forms.com/submit" data-sujet="Demande de devis">
+        <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS">
+        <input type="hidden" name="subject" value="Demande de devis — site Clair &amp; Net">
+        <input type="hidden" name="from_name" value="Site Clair &amp; Net">
         <div class="duo-champs">
           <label>Prénom <input type="text" name="prenom" required></label>
           <label>Nom <input type="text" name="nom" required></label>
@@ -102,7 +105,7 @@
           <label class="radio"><input type="radio" name="canal" value="mail"> E-mail</label>
         </fieldset>
         <p class="piege" aria-hidden="true">
-          <label>Ne remplissez pas ce champ <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+          <label>Ne remplissez pas ce champ <input type="text" name="botcheck" tabindex="-1" autocomplete="off"></label>
         </p>
 
         <button type="submit" class="btn btn-plein large">Envoyer ma demande</button>

@@ -33,17 +33,17 @@
 
       // Piege a robots : le champ est invisible pour un humain.
       // S'il est rempli, on fait semblant d'accepter sans rien envoyer.
-      var piege = form.querySelector('[name="_gotcha"]');
+      var piege = form.querySelector('[name="botcheck"]');
       if (piege && piege.value) { form.reset(); if (ok) ok.hidden = false; return; }
 
       var url = form.dataset.endpoint;
-      if (!url || url.indexOf('VOTRE_IDENTIFIANT') !== -1) {
+      var cle = form.querySelector('[name="access_key"]');
+      if (!url || !cle || !cle.value || cle.value.indexOf('VOTRE_CLE') !== -1) {
         if (ko) ko.hidden = false;
         return;
       }
 
       var donnees = new FormData(form);
-      if (form.dataset.sujet) donnees.append('_subject', form.dataset.sujet + ' — site Clair & Net');
 
       if (bouton) { bouton.disabled = true; bouton.textContent = 'Envoi en cours…'; }
 

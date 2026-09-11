@@ -63,7 +63,10 @@
 <section class="sec">
   <div class="wrap form-seul">
     <div class="bloc-form">
-      <form class="formulaire" data-endpoint="https://formspree.io/f/VOTRE_IDENTIFIANT" data-sujet="Candidature">
+      <form class="formulaire" data-endpoint="https://api.web3forms.com/submit" data-sujet="Candidature">
+        <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS">
+        <input type="hidden" name="subject" value="Candidature — site Clair &amp; Net">
+        <input type="hidden" name="from_name" value="Site Clair &amp; Net">
         <div class="duo-champs">
           <label>Prénom <input type="text" required></label>
           <label>Nom <input type="text" required></label>
@@ -80,7 +83,7 @@
         </label>
         <label>Votre message <textarea rows="5" placeholder="Votre expérience, vos disponibilités, votre secteur…"></textarea></label>
         <p class="piege" aria-hidden="true">
-          <label>Ne remplissez pas ce champ <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+          <label>Ne remplissez pas ce champ <input type="text" name="botcheck" tabindex="-1" autocomplete="off"></label>
         </p>
 
         <button type="submit" class="btn btn-plein large">Envoyer ma candidature</button>
