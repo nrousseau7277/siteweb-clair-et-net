@@ -144,11 +144,11 @@ p+p{margin-top:14px}
 
 /* ---------- Avis ---------- */
 .avis-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.avis-grille blockquote{background:var(--blanc);border:1px solid var(--ligne);border-left:3px solid var(--jaune-google);border-radius:var(--rayon);padding:26px 24px;font-size:.97rem;color:var(--gris)}
+.avis-grille blockquote,.avis-piste blockquote{background:var(--blanc);border:1px solid var(--ligne);border-left:3px solid var(--jaune-google);border-radius:var(--rayon);padding:26px 24px;font-size:.97rem;color:var(--gris)}
 /* Les avis n'ont pas la meme longueur : sans cela la signature suit la fin
    du texte et tombe a trois hauteurs differentes. On la colle au bas de la carte. */
-.avis-grille blockquote{display:flex;flex-direction:column}
-.avis-grille cite{display:block;margin-top:auto;padding-top:16px;font-style:normal;font-weight:500;color:var(--rose-fonce);font-size:.9rem}
+.avis-grille blockquote,.avis-piste blockquote{display:flex;flex-direction:column}
+.avis-grille cite,.avis-piste cite{display:block;margin-top:auto;padding-top:16px;font-style:normal;font-weight:500;color:var(--rose-fonce);font-size:.9rem}
 
 
 /* Note globale et etoiles des avis Google */
@@ -156,7 +156,7 @@ p+p{margin-top:14px}
   margin-bottom:30px;font-size:1.02rem;color:var(--gris)}
 .avis-note strong{font-family:var(--titre);font-size:1.7rem;color:var(--rose-fonce)}
 .etoiles{color:var(--jaune-google);letter-spacing:.12em;font-size:1.05rem}
-.avis-grille blockquote .etoiles{display:block;margin-bottom:10px;font-size:.95rem}
+.avis-grille blockquote .etoiles,.avis-piste blockquote .etoiles{display:block;margin-bottom:10px;font-size:.95rem}
 
 /* ---------- Encarts ---------- */
 .encart-fort{background:var(--rose-pale);border:1px solid var(--ligne);border-radius:var(--rayon);padding:clamp(26px,3vw,38px);margin:32px 0}
@@ -288,6 +288,28 @@ html.anim .hero-grand .cta-duo{animation-delay:.2s}
 }
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+/* ---- Ruban d'avis qui defile ----------------------------------------
+   Construit par app.js. Sans JavaScript, ou avec « reduire les animations »,
+   la grille a trois colonnes d'origine reste en place : rien ne depend
+   de ce ruban pour que les avis soient lisibles. */
+.avis-ruban{position:relative;overflow-x:auto;overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.avis-ruban::-webkit-scrollbar{display:none}
+.avis-piste{display:flex;gap:22px;width:max-content;padding:4px 0;
+  animation:defile-avis 46s linear infinite}
+.avis-piste blockquote{flex:none;width:min(360px,78vw);margin:0}
+/* On suspend des qu'on survole, qu'on navigue au clavier ou qu'on fait
+   glisser : personne ne doit courir apres un texte pour le lire. */
+.avis-ruban:hover .avis-piste,
+.avis-ruban:focus-within .avis-piste,
+.avis-ruban.fige .avis-piste{animation-play-state:paused}
+@keyframes defile-avis{from{transform:translateX(0)}
+  to{transform:translateX(calc(-50% - 11px))}}
+@media(prefers-reduced-motion:reduce){
+  .avis-piste{animation:none}
 }
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}

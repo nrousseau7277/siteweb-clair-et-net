@@ -242,7 +242,7 @@
 
   // Blocs concernes, dans l'ordre ou ils apparaissent dans la page
   var cibles = [
-    '.sec .tete', '.carte', '.trio > *', '.etapes > li', '.avis-grille > *',
+    '.sec .tete', '.carte', '.trio > *', '.etapes > li',
     '.zone > *', '.encart-tarif', '.bande-cta .wrap', '.gal > *',
     '.grille-form > *', '.amen-grid > *', '.centre'
   ];
@@ -287,4 +287,48 @@
     if (aRepondu) return;
     blocs.forEach(function (el) { el.classList.add('vu'); });
   }, 1200);
+})();
+
+
+/* ============================================================
+   Ruban d'avis
+   On transforme la grille a trois colonnes en une bande qui
+   defile doucement. Les cartes sont dupliquees une fois pour
+   que la boucle soit invisible ; les copies sont masquees aux
+   lecteurs d'ecran pour ne pas lire deux fois les memes avis.
+   Si cette fonction ne s'execute pas, la grille d'origine reste
+   affichee telle quelle.
+   ============================================================ */
+(function () {
+  if (!document.documentElement.classList.contains('anim')) return;
+
+  var grille = document.querySelector('.avis-grille');
+  if (!grille) return;
+
+  var avis = [].slice.call(grille.children);
+  if (avis.length < 2) return;
+
+  var ruban = document.createElement('div');
+  ruban.className = 'avis-ruban';
+  var piste = document.createElement('div');
+  piste.className = 'avis-piste';
+
+  avis.forEach(function (el) { piste.appendChild(el); });
+  // seconde serie, pour boucler sans saut visible
+  avis.forEach(function (el) {
+    var copie = el.cloneNode(true);
+    copie.setAttribute('aria-hidden', 'true');
+    piste.appendChild(copie);
+  });
+
+  ruban.appendChild(piste);
+  grille.parentNode.replaceChild(ruban, grille);
+
+  // Faire glisser a la main suspend le defilement, puis il repart.
+  var minuteur;
+  ruban.addEventListener('scroll', function () {
+    ruban.classList.add('fige');
+    clearTimeout(minuteur);
+    minuteur = setTimeout(function () { ruban.classList.remove('fige'); }, 2500);
+  }, { passive: true });
 })();
