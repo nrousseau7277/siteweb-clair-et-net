@@ -276,9 +276,13 @@ p+p{margin-top:14px}
    « anim » est presente sur <html>, posee par anim.js : sans JavaScript,
    ou avec « reduire les animations » actif, rien ne disparait.
    Mouvement volontairement discret : 16 px et une demi-seconde. */
-html.anim .apparait{opacity:0;transform:translateY(16px);
-  transition:opacity .55s ease-out,transform .55s cubic-bezier(.2,.7,.3,1)}
-html.anim .apparait.vu{opacity:1;transform:none}
+/* On utilise « translate » et non « transform » : le soulevement au survol
+   se fait avec « transform », et les deux se cumulent au lieu de se
+   contredire. Avec « transform » des deux cotes, la regle d'apparition
+   l'emportait en specificite et le survol des cartes ne faisait plus rien. */
+html.anim .apparait{opacity:0;translate:0 16px;
+  transition:opacity .55s ease-out,translate .55s cubic-bezier(.2,.7,.3,1)}
+html.anim .apparait.vu{opacity:1;translate:none}
 
 /* Dans une grille, les elements arrivent l'un apres l'autre. */
 html.anim .apparait[data-retard="1"]{transition-delay:.09s}
