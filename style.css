@@ -33,6 +33,19 @@ html,body{overflow-x:clip}
 
 img,iframe{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
+
+/* Contour de focus : le navigateur dessine un cadre bleu des qu'on clique
+   sur un lien ou un bouton, ce qui est disgracieux et reste affiche apres
+   le clic. On ne le montre qu'aux personnes qui naviguent au clavier
+   (:focus-visible) : le retirer completement rendrait le site inutilisable
+   sans souris. Au passage on coupe le rectangle gris du tap sur mobile. */
+a,button,label,summary{-webkit-tap-highlight-color:transparent}
+a:focus,button:focus,label:focus{outline:none}
+a:focus-visible,button:focus-visible,label:focus-visible{
+  outline:2px solid var(--rose);outline-offset:3px;border-radius:4px}
+/* La case qui commande le menu est invisible : au clavier, on montre
+   le focus sur le bouton burger a la place. */
+.menu-check:focus-visible~.burger{outline:2px solid var(--rose);outline-offset:4px;border-radius:6px}
 h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacing:-.015em}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
 .etroit{max-width:760px}
