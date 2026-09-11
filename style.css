@@ -144,6 +144,7 @@ p+p{margin-top:14px}
 .formulaire legend{font-size:.88rem;font-weight:500;color:var(--rose-fonce);margin-bottom:8px}
 .radio{display:inline-flex;align-items:center;gap:7px;margin-right:18px;font-weight:400}
 .radio input{width:auto;margin:0}
+.piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}
 .msg-ko a{color:#8A3232;text-decoration:underline}

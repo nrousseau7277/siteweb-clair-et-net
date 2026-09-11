@@ -31,6 +31,11 @@
       if (ok) ok.hidden = true;
       if (ko) ko.hidden = true;
 
+      // Piege a robots : le champ est invisible pour un humain.
+      // S'il est rempli, on fait semblant d'accepter sans rien envoyer.
+      var piege = form.querySelector('[name="_gotcha"]');
+      if (piege && piege.value) { form.reset(); if (ok) ok.hidden = false; return; }
+
       var url = form.dataset.endpoint;
       if (!url || url.indexOf('VOTRE_IDENTIFIANT') !== -1) {
         if (ko) ko.hidden = false;
