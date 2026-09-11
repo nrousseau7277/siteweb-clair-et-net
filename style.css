@@ -57,6 +57,7 @@ h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacin
 .tel-entete{background:var(--rose);color:var(--blanc);padding:11px 20px;border-radius:100px;font-weight:500;font-size:.92rem;white-space:nowrap;transition:.25s}
 .tel-entete:hover{background:var(--rose-fonce)}
 .menu-check{position:absolute;opacity:0;width:1px;height:1px}
+.fermer-menu{display:none}
 .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
 .burger span{width:24px;height:2px;background:var(--encre);transition:.3s}
 
@@ -300,12 +301,26 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
   .burger{display:flex}
   .marque-logo{height:50px}
   .tel-entete{padding:9px 15px;font-size:.85rem}
-  .menu{position:fixed;top:0;right:0;bottom:0;height:100%;width:78%;max-width:300px;
+  .menu{position:fixed;top:0;right:0;bottom:0;height:100%;width:66%;max-width:252px;
     overflow-y:auto;background:var(--blanc);flex-direction:column;
-    justify-content:center;gap:22px;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.3,1);
-    box-shadow:-20px 0 60px -30px rgba(0,0,0,.4);padding:40px;z-index:110}
+    justify-content:flex-start;align-items:stretch;gap:2px;
+    transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.3,1);
+    box-shadow:-20px 0 60px -30px rgba(0,0,0,.4);padding:72px 24px 28px;z-index:110}
   .menu-check:checked~.menu{transform:translateX(0)}
-  .menu a{font-size:1.05rem}
+  .menu a{font-size:1rem;padding:13px 4px;border-bottom:1px solid var(--ligne);
+    white-space:normal}
+  .menu a:last-of-type{border-bottom:none}
+  /* Le trait dore de la page courante ne convient plus en liste : on marque
+     la page active par la couleur et un filet a gauche. */
+  /* Le texte de la page active reste aligne sur les autres :
+     le filet dore deborde vers la gauche, pas le libelle. */
+  .menu a.actif{border-bottom-color:var(--ligne);border-left:3px solid var(--or);
+    padding-left:13px;margin-left:-12px}
+  .fermer-menu{display:flex;align-items:center;justify-content:center;
+    position:absolute;top:12px;right:12px;width:42px;height:42px;border-radius:50%;
+    background:var(--rose-pale);color:var(--rose-fonce);font-size:1.6rem;line-height:0;
+    cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .fermer-menu:active{background:#F8D7EC}
   .duo-champs{grid-template-columns:1fr}
   .pied-grille{grid-template-columns:1fr}
   .carte-map iframe{height:260px}
