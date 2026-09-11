@@ -195,6 +195,9 @@ p+p{margin-top:14px}
    retour a la ligne du titre */
 @media(max-width:620px){
   .hero-grand h1{font-size:min(6vw,2rem)}
+  /* Deux colonnes sur un telephone donnent des colonnes de 158 px :
+     le texte tombe a un mot par ligne. On empile. */
+  .duo-cartes{grid-template-columns:1fr}
 }
 /* Bandeau de consentement. Barre discrete en bas, jamais un mur :
    la page reste lisible et utilisable tant qu'on n'a pas repondu. */
@@ -288,10 +291,17 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
   .pied-grille{grid-template-columns:1fr 1fr}
 }
 @media(max-width:940px){
+  /* Le panneau du menu est un enfant de .entete et se place en position:fixed.
+     Or un ancetre portant backdrop-filter devient le referentiel des elements
+     fixes : le panneau se calait sur la hauteur de l'en-tete au lieu de l'ecran,
+     et les liens debordaient par-dessus la page (constate sur iPhone).
+     On retire donc le flou sur mobile ; le fond de l'en-tete est deja opaque a 94%. */
+  .entete{backdrop-filter:none;-webkit-backdrop-filter:none}
   .burger{display:flex}
   .marque-logo{height:50px}
   .tel-entete{padding:9px 15px;font-size:.85rem}
-  .menu{position:fixed;inset:0 0 0 auto;width:78%;max-width:300px;background:var(--blanc);flex-direction:column;
+  .menu{position:fixed;top:0;right:0;bottom:0;height:100%;width:78%;max-width:300px;
+    overflow-y:auto;background:var(--blanc);flex-direction:column;
     justify-content:center;gap:22px;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.7,.3,1);
     box-shadow:-20px 0 60px -30px rgba(0,0,0,.4);padding:40px;z-index:110}
   .menu-check:checked~.menu{transform:translateX(0)}
