@@ -67,25 +67,27 @@
         <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS">
         <input type="hidden" name="subject" value="Candidature — site Clair &amp; Net">
         <input type="hidden" name="from_name" value="Site Clair &amp; Net">
+        <p class="legende-obl">Les champs suivis d’un <abbr class="obl" title="Champ obligatoire">*</abbr> sont obligatoires.</p>
         <div class="duo-champs">
-          <label>Prénom <input type="text" required></label>
-          <label>Nom <input type="text" required></label>
+          <label>Prénom <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="prenom" required></label>
+          <label>Nom <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="nom" required></label>
         </div>
         <div class="duo-champs">
-          <label>E-mail <input type="email" required></label>
-          <label>Téléphone <input type="tel" required></label>
+          <label>E-mail <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="email" name="email" required></label>
+          <label>Téléphone <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="tel" name="tel" required></label>
         </div>
         <label>Vous postulez pour
-          <select>
+          <select name="poste">
             <option>Ménage chez les particuliers</option>
             <option>Ménage dans des bureaux</option>
           </select>
         </label>
-        <label>Votre message <textarea rows="5" placeholder="Votre expérience, vos disponibilités, votre secteur…"></textarea></label>
+        <label>Votre message <textarea name="message" rows="5" placeholder="Votre expérience, vos disponibilités, votre secteur…"></textarea></label>
         <p class="piege" aria-hidden="true">
           <label>Ne remplissez pas ce champ <input type="text" name="botcheck" tabindex="-1" autocomplete="off"></label>
         </p>
 
+        <p class="msg-champs" role="alert" hidden></p>
         <button type="submit" class="btn btn-plein large">Envoyer ma candidature</button>
         <p class="msg-ok" hidden>Merci, votre candidature est bien partie. Nous vous répondrons rapidement.</p>
         <p class="msg-ko" hidden>L'envoi n'a pas fonctionné. Écrivez-nous à <a href="mailto:nrousseau@cnet77.fr">nrousseau@cnet77.fr</a>.</p>

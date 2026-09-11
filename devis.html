@@ -79,15 +79,16 @@
         <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS">
         <input type="hidden" name="subject" value="Demande de devis — site Clair &amp; Net">
         <input type="hidden" name="from_name" value="Site Clair &amp; Net">
+        <p class="legende-obl">Les champs suivis d’un <abbr class="obl" title="Champ obligatoire">*</abbr> sont obligatoires.</p>
         <div class="duo-champs">
-          <label>Prénom <input type="text" name="prenom" required></label>
-          <label>Nom <input type="text" name="nom" required></label>
+          <label>Prénom <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="prenom" required></label>
+          <label>Nom <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="nom" required></label>
         </div>
         <div class="duo-champs">
-          <label>E-mail <input type="email" name="email" required></label>
+          <label>E-mail <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="email" name="email" required></label>
           <label>Téléphone <span class="fac">(facultatif)</span> <input type="tel" name="tel"></label>
         </div>
-        <label>Votre commune <input type="text" name="ville" required></label>
+        <label>Votre commune <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="ville" required></label>
         <label>De quoi avez-vous besoin ? <span class="fac">(facultatif)</span>
           <select name="besoin">
             <option>Ménage régulier</option>
@@ -108,6 +109,7 @@
           <label>Ne remplissez pas ce champ <input type="text" name="botcheck" tabindex="-1" autocomplete="off"></label>
         </p>
 
+        <p class="msg-champs" role="alert" hidden></p>
         <button type="submit" class="btn btn-plein large">Envoyer ma demande</button>
         <p class="msg-ok" hidden>Merci, votre demande est bien partie. Nous revenons vers vous sous 24 h ouvrées.</p>
         <p class="msg-ko" hidden>L'envoi n'a pas fonctionné. Écrivez-nous à <a href="mailto:nrousseau@cnet77.fr">nrousseau@cnet77.fr</a> ou appelez le <a href="tel:0650944665">06 50 94 46 65</a>.</p>

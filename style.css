@@ -144,6 +144,18 @@ p+p{margin-top:14px}
 .formulaire legend{font-size:.88rem;font-weight:500;color:var(--rose-fonce);margin-bottom:8px}
 .radio{display:inline-flex;align-items:center;gap:7px;margin-right:18px;font-weight:400}
 .radio input{width:auto;margin:0}
+/* Champs obligatoires : asterisque rouge, mention et message d'erreur */
+.obl{color:#D92D20;text-decoration:none;font-weight:700;margin:0 1px}
+.legende-obl{margin:0 0 18px;font-size:.86rem;color:#6E626B}
+.msg-champs{margin:0 0 16px;padding:13px 16px;border-radius:14px;
+  background:#FDECEA;border:1px solid #F3B9B2;color:#8E1D12;
+  font-size:.92rem;line-height:1.5}
+.formulaire input.invalide,
+.formulaire select.invalide,
+.formulaire textarea.invalide{border-color:#D92D20;background:#FDF6F5}
+.formulaire input.invalide:focus,
+.formulaire select.invalide:focus,
+.formulaire textarea.invalide:focus{outline:2px solid #D92D20;outline-offset:1px}
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}

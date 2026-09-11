@@ -26,10 +26,72 @@
     var bouton = form.querySelector('[type="submit"]');
     var libelle = bouton ? bouton.textContent : '';
 
+    var manque = form.querySelector('.msg-champs');
+
+    // On prend la main sur la verification : le navigateur afficherait
+    // une bulle dans sa propre langue, et une seule a la fois.
+    // Si JavaScript ne se charge pas, l'attribut reste absent et
+    // la verification native du navigateur s'applique quand meme.
+    form.setAttribute('novalidate', '');
+
+    // Nom lisible d'un champ, tire de son libelle
+    function nomDuChamp(champ) {
+      var l = champ.closest('label');
+      if (!l) return 'un champ';
+      var t = l.cloneNode(true);
+      var e = t.querySelectorAll('input, select, textarea, .fac, .obl');
+      for (var i = 0; i < e.length; i++) e[i].remove();
+      return t.textContent.replace(/\s+/g, ' ').trim().replace(/\s*:$/, '');
+    }
+
+    function nettoyer(champ) {
+      champ.classList.remove('invalide');
+      champ.removeAttribute('aria-invalid');
+    }
+
+    // Des que la personne corrige, on enleve le rouge sur ce champ
+    form.addEventListener('input', function (e) {
+      if (e.target.classList.contains('invalide') && e.target.checkValidity()) nettoyer(e.target);
+    });
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (ok) ok.hidden = true;
       if (ko) ko.hidden = true;
+
+      // Verification des champs obligatoires
+      var champs = form.querySelectorAll('input[required], select[required], textarea[required]');
+      var vides = [], malformes = [], premier = null;
+      for (var i = 0; i < champs.length; i++) {
+        var c = champs[i];
+        nettoyer(c);
+        if (c.checkValidity()) continue;
+        if (c.validity.valueMissing) {
+          vides.push(nomDuChamp(c));
+        } else if (c.type === 'email') {
+          malformes.push('L’adresse e-mail n’est pas au bon format : il manque le @ ou ce qui suit.');
+        } else {
+          malformes.push('Le champ « ' + nomDuChamp(c) + ' » est à revoir.');
+        }
+        c.classList.add('invalide');
+        c.setAttribute('aria-invalid', 'true');
+        if (!premier) premier = c;
+      }
+
+      if (premier) {
+        var phrases = [];
+        if (vides.length) {
+          phrases.push(vides.length > 1
+            ? 'Il manque ' + vides.length + ' champs obligatoires : ' + vides.join(', ') + '.'
+            : 'Il manque un champ obligatoire : ' + vides[0] + '.');
+        }
+        for (var j = 0; j < malformes.length; j++) phrases.push(malformes[j]);
+        if (manque) { manque.textContent = phrases.join(' '); manque.hidden = false; }
+        premier.focus();
+        if (premier.scrollIntoView) premier.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        return;
+      }
+      if (manque) manque.hidden = true;
 
       // Piege a robots : le champ est invisible pour un humain.
       // S'il est rempli, on fait semblant d'accepter sans rien envoyer.
