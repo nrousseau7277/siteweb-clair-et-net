@@ -188,6 +188,14 @@ p+p{margin-top:14px}
 .carte-adr{margin:0;color:var(--encre);line-height:1.55}
 .carte-note{margin:0;max-width:330px;font-size:.8rem;color:#6E626B;line-height:1.5}
 .carte-map iframe{display:block;width:100%;border:0}
+/* Titre de l'accueil : le retour a la ligne apres « domicile » est force
+   dans le HTML (<br>). Sous 620 px, la taille suit la largeur de l'ecran
+   pour que « Menage et repassage a domicile » tienne sur une seule ligne :
+   sans ca le titre passerait a trois lignes sur telephone.
+   retour a la ligne du titre */
+@media(max-width:620px){
+  .hero-grand h1{font-size:min(6vw,2rem)}
+}
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}
