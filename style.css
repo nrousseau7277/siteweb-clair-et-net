@@ -323,6 +323,9 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
 .infos{margin-top:22px}
 .ligne-info{display:flex;gap:16px;margin-bottom:22px;align-items:flex-start}
 .ic-rond{flex:none;width:42px;height:42px;border-radius:50%;background:var(--rose-pale);color:var(--rose);display:flex;align-items:center;justify-content:center;font-family:var(--titre);font-weight:600}
+/* Icone dessinee plutot qu'une lettre : elle herite de la couleur rose
+   de la pastille et reste nette a toutes les tailles d'ecran. */
+.ic-rond svg{width:20px;height:20px;display:block}
 .gros-tel{font-size:1.35rem;font-weight:600;color:var(--rose)}
 
 
