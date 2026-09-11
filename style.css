@@ -64,9 +64,15 @@ h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacin
 .marque{display:flex;align-items:center;gap:12px;margin-right:auto;flex:none;min-width:0}
 .marque-logo{height:60px;width:auto;flex:none}
 .menu{display:flex;gap:20px;align-items:center;flex:none}
-.menu a{font-size:.9rem;color:var(--encre);padding:6px 0;border-bottom:2px solid transparent;transition:.25s;white-space:nowrap}
-.menu a:hover{color:var(--rose)}
-.menu a.actif{color:var(--rose);border-bottom-color:var(--or)}
+.menu a{font-size:.9rem;color:var(--encre);padding:6px 0;transition:color .2s;white-space:nowrap}
+/* Le mot passe en gras au survol, ce qui l'elargit et decalerait tous les
+   liens voisins. On reserve donc d'avance la largeur de sa version grasse,
+   avec une copie invisible et sans hauteur : le menu ne bouge plus d'un pixel. */
+.menu a::before{content:attr(data-texte);display:block;height:0;overflow:hidden;
+  visibility:hidden;font-weight:700;pointer-events:none}
+.menu a:hover{color:var(--rose);font-weight:700}
+/* Page en cours : rose, mais sans gras et sans trait. */
+.menu a.actif{color:var(--rose)}
 .tel-entete{background:var(--rose);color:var(--blanc);padding:11px 20px;border-radius:100px;font-weight:500;font-size:.92rem;white-space:nowrap;transition:.25s}
 .tel-entete:hover{background:var(--rose-fonce)}
 .menu-check{position:absolute;opacity:0;width:1px;height:1px}
@@ -401,10 +407,8 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
   .menu a:last-of-type{border-bottom:none}
   /* Le trait dore de la page courante ne convient plus en liste : on marque
      la page active par la couleur et un filet a gauche. */
-  /* Le texte de la page active reste aligne sur les autres :
-     le filet dore deborde vers la gauche, pas le libelle. */
-  .menu a.actif{border-bottom-color:var(--ligne);border-left:3px solid var(--or);
-    padding-left:13px;margin-left:-12px}
+  /* Page en cours dans le tiroir : rose simple, sans filet dore. */
+  .menu a.actif{border-bottom-color:var(--ligne)}
   .fermer-menu{display:flex;align-items:center;justify-content:center;
     position:absolute;top:12px;right:12px;width:42px;height:42px;border-radius:50%;
     background:var(--rose-pale);color:var(--rose-fonce);font-size:1.6rem;line-height:0;
