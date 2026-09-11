@@ -98,7 +98,16 @@ p+p{margin-top:14px}
 /* ---------- Avantages ---------- */
 .avantages{padding-top:clamp(36px,5vh,56px)}
 .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.trio article{background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--rayon);padding:32px 26px;box-shadow:var(--ombre)}
+.trio article{background:var(--blanc);border:1px solid var(--ligne);border-radius:var(--rayon);padding:32px 26px;box-shadow:var(--ombre);
+  display:flex;flex-direction:column}
+/* Les textes des trois cartes n'ont pas la meme longueur : sans cela le lien
+   suit la fin du paragraphe et se retrouve a trois hauteurs differentes.
+   « margin-top:auto » le pousse au bas de la carte, donc sur une meme ligne. */
+.trio .lien-fleche{margin-top:auto;padding-top:16px;align-self:flex-start}
+/* En colonne flex, les enfants s'etirent sur toute la largeur par defaut :
+   les pastilles et les titres doivent garder leur largeur naturelle. */
+.trio article > *{align-self:flex-start}
+.trio article > h2,.trio article > p{align-self:stretch}
 .trio .ic{display:inline-flex;align-items:center;justify-content:center;min-width:56px;height:56px;padding:0 12px;border-radius:100px;background:var(--rose-pale);color:var(--rose);font-family:var(--titre);font-size:1.3rem;font-weight:600;margin-bottom:16px}
 .trio h2{font-size:1.16rem;margin-bottom:8px}
 .trio p{font-size:.95rem;color:var(--gris)}
@@ -268,9 +277,9 @@ html.anim .hero-grand .cta-duo{animation-delay:.2s}
 @keyframes entree{to{opacity:1;transform:none}}
 
 /* Petites reactions au survol, sur les elements deja interactifs. */
-.carte{transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
+.carte,.trio article{transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
 @media(hover:hover){
-  .carte:hover{transform:translateY(-4px);box-shadow:0 18px 40px -28px rgba(23,19,23,.45)}
+  .carte:hover,.trio article:hover{transform:translateY(-4px);box-shadow:0 18px 40px -28px rgba(23,19,23,.45)}
   .lien-fleche:hover::after{transform:translateX(4px)}
 }
 @media(prefers-reduced-motion:reduce){
