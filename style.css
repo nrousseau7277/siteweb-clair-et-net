@@ -242,6 +242,40 @@ p+p{margin-top:14px}
    atteint 693 px : le bloc doit etre assez large pour l'accueillir,
    sinon elle se replie et « connaissez. » se retrouve seul sur une ligne. */
 .hero-grand .chapo{max-width:740px}
+/* ---- Apparitions au defilement --------------------------------------
+   Le contenu est visible par defaut. Il n'est masque que si la classe
+   « anim » est presente sur <html>, posee par anim.js : sans JavaScript,
+   ou avec « reduire les animations » actif, rien ne disparait.
+   Mouvement volontairement discret : 16 px et une demi-seconde. */
+html.anim .apparait{opacity:0;transform:translateY(16px);
+  transition:opacity .55s ease-out,transform .55s cubic-bezier(.2,.7,.3,1)}
+html.anim .apparait.vu{opacity:1;transform:none}
+
+/* Dans une grille, les elements arrivent l'un apres l'autre. */
+html.anim .apparait[data-retard="1"]{transition-delay:.09s}
+html.anim .apparait[data-retard="2"]{transition-delay:.18s}
+html.anim .apparait[data-retard="3"]{transition-delay:.27s}
+
+/* Le haut de page s'anime des l'ouverture, sans attendre le defilement. */
+html.anim .hero-grand h1,
+html.anim .hero-grand .chapo,
+html.anim .hero-grand .cta-duo,
+html.anim .hero-court h1,
+html.anim .hero-court .chapo{opacity:0;transform:translateY(14px);
+  animation:entree .65s cubic-bezier(.2,.7,.3,1) forwards}
+html.anim .hero-grand .chapo,html.anim .hero-court .chapo{animation-delay:.1s}
+html.anim .hero-grand .cta-duo{animation-delay:.2s}
+@keyframes entree{to{opacity:1;transform:none}}
+
+/* Petites reactions au survol, sur les elements deja interactifs. */
+.carte{transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s}
+@media(hover:hover){
+  .carte:hover{transform:translateY(-4px);box-shadow:0 18px 40px -28px rgba(23,19,23,.45)}
+  .lien-fleche:hover::after{transform:translateX(4px)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}

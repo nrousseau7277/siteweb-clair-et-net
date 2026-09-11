@@ -227,3 +227,64 @@
     construire();
   });
 })();
+
+
+/* ============================================================
+   Apparitions au defilement
+   On marque les blocs a animer, puis on les revele quand ils
+   entrent dans l'ecran. Tout est conditionne a la classe « anim » :
+   sans elle (JavaScript indisponible, ou reglage « reduire les
+   animations »), le contenu reste affiche normalement.
+   ============================================================ */
+(function () {
+  if (!document.documentElement.classList.contains('anim')) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  // Blocs concernes, dans l'ordre ou ils apparaissent dans la page
+  var cibles = [
+    '.sec .tete', '.carte', '.trio > *', '.etapes > li', '.avis-grille > *',
+    '.zone > *', '.encart-tarif', '.bande-cta .wrap', '.gal > *',
+    '.grille-form > *', '.amen-grid > *', '.centre'
+  ];
+
+  var blocs = [];
+  cibles.forEach(function (sel) {
+    [].forEach.call(document.querySelectorAll(sel), function (el) {
+      // on evite d'animer un element deja contenu dans un autre anime
+      if (el.closest('.entete, .pied, .bandeau-cookies, .menu')) return;
+      if (blocs.indexOf(el) === -1) blocs.push(el);
+    });
+  });
+  if (!blocs.length) return;
+
+  blocs.forEach(function (el) {
+    el.classList.add('apparait');
+    // decalage en cascade pour les elements d'une meme rangee
+    var freres = el.parentNode ? [].indexOf.call(el.parentNode.children, el) : 0;
+    if (freres > 0 && freres < 4) el.setAttribute('data-retard', String(freres));
+  });
+
+  var aRepondu = false;
+
+  var oeil = new IntersectionObserver(function (entrees) {
+    aRepondu = true;
+    entrees.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('vu');
+      oeil.unobserve(e.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+  blocs.forEach(function (el) { oeil.observe(el); });
+
+  // Filet de securite cible. Un IntersectionObserver qui fonctionne rappelle
+  // toujours une premiere fois juste apres observe(), meme pour les blocs
+  // hors ecran. S'il ne rappelle jamais, c'est qu'il est inoperant dans cet
+  // environnement : on affiche tout plutot que de laisser une page vide.
+  // Ce filet ne se declenche donc pas dans un navigateur normal, et
+  // n'annule pas l'effet pour qui lit lentement.
+  setTimeout(function () {
+    if (aRepondu) return;
+    blocs.forEach(function (el) { el.classList.add('vu'); });
+  }, 1200);
+})();
