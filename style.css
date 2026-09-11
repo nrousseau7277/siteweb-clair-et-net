@@ -220,6 +220,11 @@ p+p{margin-top:14px}
   .bandeau-btns{width:100%}
   .bandeau-btns .btn{flex:1;text-align:center}
 }
+/* Accroche de l'accueil : une phrase par ligne, le retour est force dans
+   le HTML (<br>). Sur grand ecran la police grandit et la premiere phrase
+   atteint 693 px : le bloc doit etre assez large pour l'accueillir,
+   sinon elle se replie et « connaissez. » se retrouve seul sur une ligne. */
+.hero-grand .chapo{max-width:740px}
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}
