@@ -145,7 +145,10 @@ p+p{margin-top:14px}
 /* ---------- Avis ---------- */
 .avis-grille{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .avis-grille blockquote{background:var(--blanc);border:1px solid var(--ligne);border-left:3px solid var(--or);border-radius:var(--rayon);padding:26px 24px;font-size:.97rem;color:var(--gris)}
-.avis-grille cite{display:block;margin-top:14px;font-style:normal;font-weight:500;color:var(--rose-fonce);font-size:.9rem}
+/* Les avis n'ont pas la meme longueur : sans cela la signature suit la fin
+   du texte et tombe a trois hauteurs differentes. On la colle au bas de la carte. */
+.avis-grille blockquote{display:flex;flex-direction:column}
+.avis-grille cite{display:block;margin-top:auto;padding-top:16px;font-style:normal;font-weight:500;color:var(--rose-fonce);font-size:.9rem}
 
 
 /* Note globale et etoiles des avis Google */
