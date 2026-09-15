@@ -106,11 +106,19 @@
         return;
       }
 
-      var donnees = new FormData(form);
+      // Envoi en JSON et non en « multipart » : le JSON est toujours encode en
+      // UTF-8, alors qu'en multipart le serveur doit deviner l'encodage et
+      // abimait les accents dans l'e-mail recu (constate le 15/09/2026).
+      var donnees = {};
+      new FormData(form).forEach(function (valeur, cle) { donnees[cle] = valeur; });
 
       if (bouton) { bouton.disabled = true; bouton.textContent = 'Envoi en cours…'; }
 
-      fetch(url, { method: 'POST', body: donnees, headers: { Accept: 'application/json' } })
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(donnees)
+      })
         .then(function (r) {
           if (!r.ok) throw new Error('envoi refuse');
           form.reset();
