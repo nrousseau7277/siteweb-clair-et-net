@@ -359,6 +359,20 @@ html.anim .hero-grand .cta-duo{animation-delay:.2s}
   width:24px;height:24px;border-radius:50%;background:var(--rose);color:var(--blanc);
   display:flex;align-items:center;justify-content:center;
   font-family:var(--titre);font-size:.8rem;font-weight:600}
+/* ---- Les fondatrices ----------------------------------------------
+   Une phrase de presentation et la citation en italique, centrees,
+   entre le haut de page et les trois arguments. Section volontairement
+   compacte : elle incarne l'entreprise sans repousser les arguments. */
+.sec.fondatrices{padding:clamp(34px,5vh,56px) 0 clamp(8px,2vh,18px)}
+.fondatrices .wrap{max-width:820px;text-align:center}
+.fondatrices-texte{margin:0;font-family:var(--titre);font-weight:500;
+  font-size:clamp(1.2rem,2.3vw,1.55rem);line-height:1.45;color:var(--encre)}
+.fondatrices-citation{margin:22px auto 0;padding:0;border:0;max-width:640px;position:relative}
+.fondatrices-citation p{margin:0;font-style:italic;font-size:clamp(1.05rem,1.8vw,1.22rem);
+  color:var(--rose-fonce)}
+/* un filet rose court au-dessus de la citation, pour la detacher */
+.fondatrices-citation::before{content:"";display:block;width:44px;height:2px;
+  background:var(--rose);margin:0 auto 18px;border-radius:2px}
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}
