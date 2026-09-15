@@ -261,10 +261,29 @@ p+p{margin-top:14px}
 .bandeau-btns .btn-clair{background:var(--blanc);color:var(--rose-fonce);
   border:1.5px solid var(--rose);margin-top:0}
 .bandeau-btns .btn-clair:hover{background:var(--rose-pale)}
+.bandeau-cookies{max-height:88vh;overflow-y:auto}
+.btn-texte{background:none;border:0;padding:11px 6px;font-family:var(--titre);font-size:.88rem;
+  color:var(--rose-fonce);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.btn-texte:hover{color:var(--rose)}
+/* Detail des choix : un interrupteur par usage, jamais coche d'avance */
+.bandeau-choix{flex:1 1 100%;display:grid;gap:10px}
+.choix{display:flex;gap:14px;align-items:flex-start;padding:13px 16px;border-radius:12px;
+  background:var(--rose-haut);cursor:pointer;font-size:.86rem;line-height:1.5;color:#4A3F47}
+.choix strong{display:block;color:var(--encre);font-family:var(--titre);font-weight:600;font-size:.93rem;margin-bottom:2px}
+.choix input{appearance:none;-webkit-appearance:none;flex:none;margin:2px 0 0;width:40px;height:23px;
+  border-radius:23px;background:#D8CAD3;position:relative;cursor:pointer;transition:background .2s}
+.choix input::before{content:"";position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;
+  background:var(--blanc);box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+.choix input:checked{background:var(--rose)}
+.choix input:checked::before{transform:translateX(17px)}
+.choix input:focus{outline:none}
+.choix input:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
 @media(max-width:620px){
   .bandeau-in{padding:16px 20px;gap:15px}
-  .bandeau-btns{width:100%}
+  .bandeau-btns{width:100%;flex-wrap:wrap}
   .bandeau-btns .btn{flex:1;text-align:center}
+  /* Sur telephone : Refuser et Accepter cote a cote, Personnaliser dessous */
+  .bandeau-btns .btn-texte{order:3;flex-basis:100%;padding:4px 0 0}
 }
 /* Accroche de l'accueil : une phrase par ligne, le retour est force dans
    le HTML (<br>). Sur grand ecran la police grandit et la premiere phrase

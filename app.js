@@ -150,10 +150,62 @@
 
 
 /* ============================================================
+   Consentement : la memoire des choix
+   Deux usages sont soumis a accord, chacun accepte ou refuse a part :
+   - carte  : le plan Google Maps de la page Contact ;
+   - mesure : la mesure d'audience Google Analytics.
+   Le choix est garde six mois dans le navigateur de la personne,
+   puis redemande, comme le recommande la CNIL. Rien n'est envoye
+   nulle part.
+   ============================================================ */
+var Consentement = (function () {
+  // Identifiant Google Analytics 4 de Clair & Net (G-XXXXXXXXXX).
+  // Vide : aucune mesure n'est chargee et le bandeau ne parle que du plan.
+  var GA = '';
+
+  var CLE = 'cnet-choix';
+  var DUREE = 182 * 24 * 3600 * 1000; // six mois
+
+  // Reprend le choix fait avec la premiere version du bandeau (oui / non),
+  // qui ne portait que sur le plan.
+  try {
+    var ancien = localStorage.getItem('cnet-consentement');
+    if (ancien) {
+      localStorage.setItem(CLE, JSON.stringify({ carte: ancien === 'oui', date: Date.now() }));
+      localStorage.removeItem('cnet-consentement');
+    }
+  } catch (e) {}
+
+  function lire() {
+    var c = null;
+    try { c = JSON.parse(localStorage.getItem(CLE)); } catch (e) {}
+    if (!c || typeof c !== 'object' || !(Date.now() - c.date < DUREE)) return null;
+    return c;
+  }
+
+  function enregistrer(carte, mesure) {
+    var c = { carte: !!carte, date: Date.now() };
+    if (GA) c.mesure = !!mesure;
+    try { localStorage.setItem(CLE, JSON.stringify(c)); } catch (e) {}
+    // Previent le reste du site qu'un choix vient d'etre fait
+    document.dispatchEvent(new CustomEvent('consentement', { detail: c }));
+  }
+
+  // Faut-il poser la question ? Oui s'il n'y a pas de choix, s'il a plus
+  // de six mois, ou si la mesure d'audience a ete ajoutee depuis.
+  function aDemander() {
+    var c = lire();
+    return !c || (!!GA && typeof c.mesure !== 'boolean');
+  }
+
+  return { GA: GA, lire: lire, enregistrer: enregistrer, aDemander: aDemander };
+})();
+
+
+/* ============================================================
    Plan d'acces charge sur demande
    Google Maps depose des cookies des que la carte s'affiche.
-   Tant que personne ne clique, aucune requete ne part : le site
-   reste sans cookie, donc sans bandeau de consentement.
+   Tant que personne n'a accepte ni clique, aucune requete ne part.
    ============================================================ */
 (function () {
   var zones = document.querySelectorAll('.carte-attente[data-carte]');
@@ -164,6 +216,7 @@
     if (!bouton) return;
 
     function afficher() {
+      if (!document.body.contains(zone)) return;
       var cadre = document.createElement('iframe');
       cadre.src = zone.dataset.carte;
       cadre.title = zone.dataset.titre || 'Plan d\'acces';
@@ -177,80 +230,167 @@
 
     bouton.addEventListener('click', afficher);
 
-    // Si la personne a deja accepte les cookies, le plan s'affiche
-    // directement : inutile de lui demander deux fois.
-    try {
-      if (localStorage.getItem('cnet-consentement') === 'oui') afficher();
-    } catch (e) {}
+    // Si la personne a deja accepte le plan, il s'affiche directement :
+    // inutile de lui demander deux fois.
+    var c = Consentement.lire();
+    if (c && c.carte) afficher();
 
     document.addEventListener('consentement', function (ev) {
-      if (ev.detail === 'oui' && document.body.contains(zone)) afficher();
+      if (ev.detail.carte) afficher();
     });
   });
 })();
 
 
 /* ============================================================
-   Bandeau de consentement
-   Il commande reellement le chargement du plan Google Maps :
-   tant qu'il n'y a pas d'accord, aucune requete ne part vers Google.
-   Refuser est aussi simple qu'accepter, comme l'exige la CNIL.
-   Le choix est garde dans le navigateur de la personne, rien n'est
-   envoye nulle part.
+   Mesure d'audience Google Analytics
+   Le script de Google n'est meme pas telecharge tant que la
+   personne n'a pas accepte. Si elle retire son accord, la mesure
+   s'arrete aussitot et les cookies deja deposes sont effaces.
    ============================================================ */
 (function () {
-  var CLE = 'cnet-consentement';
+  var id = Consentement.GA;
+  if (!id) return;
+  var charge = false;
 
-  function lire() {
-    try { return localStorage.getItem(CLE); } catch (e) { return null; }
-  }
-  function ecrire(v) {
-    try { localStorage.setItem(CLE, v); } catch (e) {}
+  function activer() {
+    window['ga-disable-' + id] = false;
+    if (charge) return;
+    charge = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', id, {
+      cookie_expires: 13 * 30 * 24 * 3600, // 13 mois au plus, comme le demande la CNIL
+      allow_google_signals: false,         // aucun rapprochement avec les comptes Google
+      allow_ad_personalization_signals: false
+    });
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+    document.head.appendChild(s);
   }
 
-  // Previent le reste du site qu'un choix vient d'etre fait
-  function diffuser(v) {
-    document.dispatchEvent(new CustomEvent('consentement', { detail: v }));
+  function desactiver() {
+    window['ga-disable-' + id] = true;
+    // Efface _ga et _ga_XXXX, poses par Google sur le domaine principal
+    var domaine = location.hostname.replace(/^www\./, '');
+    document.cookie.split(';').forEach(function (morceau) {
+      var nom = morceau.split('=')[0].trim();
+      if (nom.indexOf('_ga') !== 0) return;
+      var perime = '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      document.cookie = nom + perime;
+      document.cookie = nom + perime + '; domain=.' + domaine;
+    });
   }
 
-  function construire() {
+  // Sans accord en cours (refus, ou accord de plus de six mois),
+  // on ne laisse pas trainer d'anciens cookies de mesure.
+  var c = Consentement.lire();
+  if (c && c.mesure) activer(); else desactiver();
+
+  document.addEventListener('consentement', function (ev) {
+    if (ev.detail.mesure) activer(); else desactiver();
+  });
+})();
+
+
+/* ============================================================
+   Bandeau de consentement
+   Refuser est aussi simple qu'accepter, comme l'exige la CNIL.
+   Quand la mesure d'audience est active, « Personnaliser » permet
+   d'accepter l'un sans l'autre ; rien n'est coche d'avance.
+   ============================================================ */
+(function () {
+  var avecMesure = !!Consentement.GA;
+
+  var TEXTE_SIMPLE =
+    'Ce site n\'utilise aucun traceur publicitaire et ne mesure pas votre navigation. ' +
+    'Seul le plan d\'accès, fourni par Google Maps, peut déposer des cookies — et seulement si vous l\'acceptez. ';
+  var TEXTE_MESURE =
+    'Avec votre accord, nous mesurons la fréquentation du site avec Google Analytics et affichons ' +
+    'le plan d\'accès fourni par Google Maps. Ces deux services déposent des cookies. ' +
+    'Aucun traceur publicitaire. ';
+
+  function fermer(b) {
+    b.remove();
+  }
+
+  function vueSimple(b) {
+    b.querySelector('.bandeau-in').innerHTML =
+      '<p class="bandeau-txt">' + (avecMesure ? TEXTE_MESURE : TEXTE_SIMPLE) +
+        '<a href="/mentions-legales#cookies">En savoir plus</a></p>' +
+      '<div class="bandeau-btns">' +
+        '<button type="button" class="btn btn-clair" data-action="refuser">' + (avecMesure ? 'Tout refuser' : 'Refuser') + '</button>' +
+        (avecMesure ? '<button type="button" class="btn-texte" data-action="personnaliser">Personnaliser</button>' : '') +
+        '<button type="button" class="btn btn-plein" data-action="accepter">' + (avecMesure ? 'Tout accepter' : 'Accepter') + '</button>' +
+      '</div>';
+  }
+
+  function ligne(nom, titre, texte, coche) {
+    return '<label class="choix">' +
+        '<input type="checkbox" name="' + nom + '"' + (coche ? ' checked' : '') + '>' +
+        '<span><strong>' + titre + '</strong>' + texte + '</span>' +
+      '</label>';
+  }
+
+  function vueDetail(b) {
+    var c = Consentement.lire() || {};
+    b.querySelector('.bandeau-in').innerHTML =
+      '<div class="bandeau-choix">' +
+        '<p class="bandeau-txt">Choisissez ce que vous acceptez. Vous pourrez changer d\'avis à tout moment ' +
+          'par le lien « Gérer les cookies » en bas de page. <a href="/mentions-legales#cookies">En savoir plus</a></p>' +
+        ligne('mesure', 'Mesure d\'audience',
+          'Google Analytics compte les visites et les pages consultées, pour nous aider à améliorer le site. ' +
+          'Rien n\'est utilisé pour de la publicité.', c.mesure === true) +
+        ligne('carte', 'Plan d\'accès',
+          'Affiche la carte Google Maps sur la page Contact. Google peut alors déposer ses propres cookies.', c.carte === true) +
+      '</div>' +
+      '<div class="bandeau-btns">' +
+        '<button type="button" class="btn btn-clair" data-action="refuser">Tout refuser</button>' +
+        '<button type="button" class="btn btn-plein" data-action="enregistrer">Enregistrer</button>' +
+      '</div>';
+    var premier = b.querySelector('input');
+    if (premier) premier.focus({ preventScroll: true });
+  }
+
+  function construire(detail) {
     var b = document.createElement('div');
     b.className = 'bandeau-cookies';
     b.setAttribute('role', 'dialog');
     b.setAttribute('aria-label', 'Gestion des cookies');
-    b.innerHTML =
-      '<div class="bandeau-in">' +
-        '<p class="bandeau-txt">Ce site n\'utilise aucun traceur publicitaire et ne mesure pas votre navigation. ' +
-        'Seul le plan d\'accès, fourni par Google Maps, peut déposer des cookies — et seulement si vous l\'acceptez. ' +
-        '<a href="/mentions-legales">En savoir plus</a></p>' +
-        '<div class="bandeau-btns">' +
-          '<button type="button" class="btn btn-clair" data-choix="non">Refuser</button>' +
-          '<button type="button" class="btn btn-plein" data-choix="oui">Accepter</button>' +
-        '</div>' +
-      '</div>';
+    b.innerHTML = '<div class="bandeau-in"></div>';
     document.body.appendChild(b);
+    if (detail) vueDetail(b); else vueSimple(b);
 
     b.addEventListener('click', function (e) {
-      var bt = e.target.closest('[data-choix]');
+      var bt = e.target.closest('[data-action]');
       if (!bt) return;
-      var v = bt.dataset.choix;
-      ecrire(v);
-      b.remove();
-      diffuser(v);
+      var action = bt.dataset.action;
+      if (action === 'personnaliser') { vueDetail(b); return; }
+      if (action === 'refuser') Consentement.enregistrer(false, false);
+      if (action === 'accepter') Consentement.enregistrer(true, true);
+      if (action === 'enregistrer') {
+        Consentement.enregistrer(b.querySelector('[name="carte"]').checked,
+                                 b.querySelector('[name="mesure"]').checked);
+      }
+      fermer(b);
     });
     // laisse le temps au navigateur de peindre avant l'animation
     requestAnimationFrame(function () { b.classList.add('visible'); });
   }
 
-  if (!lire()) construire();
+  if (Consentement.aDemander()) construire(false);
 
-  // Lien « Gérer les cookies » du pied de page
+  // Lien « Gérer les cookies » du pied de page : ouvre directement
+  // le detail des choix quand il y en a plusieurs.
   document.addEventListener('click', function (e) {
     var l = e.target.closest('[data-gerer-cookies]');
     if (!l) return;
     e.preventDefault();
-    if (document.querySelector('.bandeau-cookies')) return;
-    construire();
+    var ouvert = document.querySelector('.bandeau-cookies');
+    if (ouvert) ouvert.remove();
+    construire(avecMesure);
   });
 })();
 
