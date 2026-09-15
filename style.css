@@ -373,6 +373,15 @@ html.anim .hero-grand .cta-duo{animation-delay:.2s}
 /* un filet rose court au-dessus de la citation, pour la detacher */
 .fondatrices-citation::before{content:"";display:block;width:44px;height:2px;
   background:var(--rose);margin:0 auto 18px;border-radius:2px}
+/* Ancrage local, sous le texte du haut de page : une pastille discrete
+   avec un repere de carte. Placee apres le titre, « la commune » renvoie
+   naturellement a Bussy-Saint-Georges, nommee juste au-dessus. */
+.implantation{display:inline-flex;align-items:center;gap:9px;margin:24px 0 0;
+  padding:8px 16px 8px 12px;border-radius:100px;background:var(--blanc);
+  border:1px solid #F3D3E6;color:var(--rose-fonce);font-size:.93rem;font-weight:500}
+.implantation svg{flex:none;width:17px;height:17px;color:var(--rose)}
+html.anim .hero-grand .implantation{opacity:0;transform:translateY(14px);
+  animation:entree .65s cubic-bezier(.2,.7,.3,1) .2s forwards}
 .piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .msg-ok{margin-top:14px;padding:12px 14px;background:var(--rose-pale);border-radius:9px;font-size:.9rem;color:var(--rose-fonce)}
 .msg-ko{margin-top:14px;padding:12px 14px;background:#FFF3F3;border:1px solid #F3CFCF;border-radius:9px;font-size:.9rem;color:#8A3232}
