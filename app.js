@@ -109,8 +109,24 @@
       // Envoi en JSON et non en « multipart » : le JSON est toujours encode en
       // UTF-8, alors qu'en multipart le serveur doit deviner l'encodage et
       // abimait les accents dans l'e-mail recu (constate le 15/09/2026).
+      var brut = {};
+      new FormData(form).forEach(function (valeur, cle) { brut[cle] = valeur; });
+
+      // Web3Forms conserve les accents dans les reponses, mais pas dans les
+      // noms de champs : les intitules affiches dans l'e-mail sont donc sans
+      // accent. Prenom et nom sont regroupes sur une seule ligne, dans cet ordre.
       var donnees = {};
-      new FormData(form).forEach(function (valeur, cle) { donnees[cle] = valeur; });
+      ['access_key', 'subject', 'from_name', 'botcheck'].forEach(function (cle) {
+        if (brut[cle] !== undefined) donnees[cle] = brut[cle];
+      });
+      var nomComplet = [brut.prenom, brut.nom].filter(Boolean).join(' ');
+      if (nomComplet) donnees['Nom complet'] = nomComplet;
+      if (brut.email) donnees.email = brut.email;   // « email » : sert d'adresse de reponse
+      [['telephone', 'Tel'], ['commune', 'Commune'], ['besoin', 'Besoin'],
+       ['contact', 'Mode de contact'], ['poste', 'Poste'], ['message', 'Message']
+      ].forEach(function (c) {
+        if (brut[c[0]] !== undefined && brut[c[0]] !== '') donnees[c[1]] = brut[c[0]];
+      });
 
       if (bouton) { bouton.disabled = true; bouton.textContent = 'Envoi en cours…'; }
 
