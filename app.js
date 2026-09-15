@@ -96,7 +96,8 @@
       // Piege a robots : le champ est invisible pour un humain.
       // S'il est rempli, on fait semblant d'accepter sans rien envoyer.
       var piege = form.querySelector('[name="botcheck"]');
-      if (piege && piege.value) { form.reset(); if (ok) ok.hidden = false; return; }
+      // Case a cocher : sa valeur vaut toujours « on », c'est « checked » qui compte.
+      if (piege && piege.checked) { form.reset(); if (ok) ok.hidden = false; return; }
 
       var url = form.dataset.endpoint;
       var cle = form.querySelector('[name="access_key"]');

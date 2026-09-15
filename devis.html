@@ -92,16 +92,16 @@ img{max-width:100%;display:block}
         <input type="hidden" name="from_name" value="Site Clair &amp; Net">
         <p class="legende-obl">Les champs suivis d’un <abbr class="obl" title="Champ obligatoire">*</abbr> sont obligatoires.</p>
         <div class="duo-champs">
-          <label>Prénom <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="prenom" required></label>
-          <label>Nom <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="nom" required></label>
+          <label>Prénom <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="Prénom" required></label>
+          <label>Nom <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="Nom" required></label>
         </div>
         <div class="duo-champs">
           <label>E-mail <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="email" name="email" required></label>
-          <label>Téléphone <span class="fac">(facultatif)</span> <input type="tel" name="tel"></label>
+          <label>Téléphone <span class="fac">(facultatif)</span> <input type="tel" name="Téléphone"></label>
         </div>
-        <label>Votre commune <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="ville" required></label>
+        <label>Votre commune <abbr class="obl" title="Champ obligatoire">*</abbr> <input type="text" name="Commune" required></label>
         <label>De quoi avez-vous besoin ? <span class="fac">(facultatif)</span>
-          <select name="besoin">
+          <select name="Besoin">
             <option>Ménage régulier</option>
             <option>Grand nettoyage ponctuel</option>
             <option>Emménagement ou déménagement</option>
@@ -111,13 +111,13 @@ img{max-width:100%;display:block}
             <option>Je ne sais pas encore</option>
           </select>
         </label>
-        <label>Votre message <span class="fac">(facultatif)</span> <textarea name="message" rows="5" placeholder="Surface du logement, fréquence souhaitée, jours qui vous arrangent…"></textarea></label>
+        <label>Votre message <span class="fac">(facultatif)</span> <textarea name="Message" rows="5" placeholder="Surface du logement, fréquence souhaitée, jours qui vous arrangent…"></textarea></label>
         <fieldset><legend>Vous préférez être recontacté par</legend>
-          <label class="radio"><input type="radio" name="canal" value="tel" checked> Téléphone</label>
-          <label class="radio"><input type="radio" name="canal" value="mail"> E-mail</label>
+          <label class="radio"><input type="radio" name="Préfère être rappelé par" value="Téléphone" checked> Téléphone</label>
+          <label class="radio"><input type="radio" name="Préfère être rappelé par" value="E-mail"> E-mail</label>
         </fieldset>
         <p class="piege" aria-hidden="true">
-          <label>Ne remplissez pas ce champ <input type="text" name="botcheck" tabindex="-1" autocomplete="off"></label>
+          <label>Ne remplissez pas ce champ <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
         </p>
 
         <p class="msg-champs" role="alert" hidden></p>
