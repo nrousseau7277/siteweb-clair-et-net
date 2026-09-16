@@ -30,25 +30,177 @@ img{max-width:100%;display:block}
 .menu,.tel-entete,.marque{text-decoration:none}
 </style>
 <script src="anim.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/polices/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"HomeAndConstructionBusiness",
-  "name":"Clair & Net",
-  "description":"Ménage et repassage à domicile pour particuliers à Bussy-Saint-Georges et en Seine-et-Marne.",
-  "telephone":"+33650944665",
-  "url":"https://cnet77.fr",
-  "address":{"@type":"PostalAddress","streetAddress":"7 avenue Jacques Cartier","addressLocality":"Bussy-Saint-Georges","postalCode":"77600","addressCountry":"FR"},
-  "geo":{"@type":"GeoCoordinates","latitude":48.8349044,"longitude":2.7081579},
-  "areaServed":["Bussy-Saint-Georges","Serris","Montévrain","Lagny-sur-Marne","Torcy","Chessy","Collégien"],
-  "openingHoursSpecification":[
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Thursday","Friday"],"opens":"09:00","closes":"19:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"09:00","closes":"12:00"}
-  ]
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "Clair & Net",
+  "description": "Ménage et repassage à domicile pour particuliers à Bussy-Saint-Georges et en Seine-et-Marne.",
+  "telephone": "+33650944665",
+  "url": "https://cnet77.fr",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "7 avenue Jacques Cartier",
+    "addressLocality": "Bussy-Saint-Georges",
+    "postalCode": "77600",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 48.8349044,
+    "longitude": 2.7081579
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Bussy-Saint-Georges"
+    },
+    {
+      "@type": "City",
+      "name": "Serris"
+    },
+    {
+      "@type": "City",
+      "name": "Chessy"
+    },
+    {
+      "@type": "City",
+      "name": "Montévrain"
+    },
+    {
+      "@type": "City",
+      "name": "Collégien"
+    },
+    {
+      "@type": "City",
+      "name": "Lagny-sur-Marne"
+    },
+    {
+      "@type": "City",
+      "name": "Torcy"
+    }
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Wednesday",
+      "opens": "09:00",
+      "closes": "12:00"
+    }
+  ],
+  "@id": "https://cnet77.fr/#entreprise",
+  "image": "https://cnet77.fr/partage.jpg",
+  "logo": "https://cnet77.fr/logo.png",
+  "email": "nrousseau@cnet77.fr",
+  "foundingDate": "2020",
+  "knowsLanguage": "fr",
+  "hasMap": "https://www.google.com/maps?cid=3300499061087602937",
+  "sameAs": [
+    "https://www.google.com/maps?cid=3300499061087602937"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Prestations",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Ménage à domicile",
+          "areaServed": {
+            "@type": "City",
+            "name": "Bussy-Saint-Georges"
+          },
+          "provider": {
+            "@id": "https://cnet77.fr/#entreprise"
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Grand nettoyage",
+          "areaServed": {
+            "@type": "City",
+            "name": "Bussy-Saint-Georges"
+          },
+          "provider": {
+            "@id": "https://cnet77.fr/#entreprise"
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Ménage d'emménagement et de déménagement",
+          "areaServed": {
+            "@type": "City",
+            "name": "Bussy-Saint-Georges"
+          },
+          "provider": {
+            "@id": "https://cnet77.fr/#entreprise"
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Remise en état après travaux",
+          "areaServed": {
+            "@type": "City",
+            "name": "Bussy-Saint-Georges"
+          },
+          "provider": {
+            "@id": "https://cnet77.fr/#entreprise"
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Repassage à domicile",
+          "areaServed": {
+            "@type": "City",
+            "name": "Bussy-Saint-Georges"
+          },
+          "provider": {
+            "@id": "https://cnet77.fr/#entreprise"
+          }
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Nettoyage des vitres",
+          "areaServed": {
+            "@type": "City",
+            "name": "Bussy-Saint-Georges"
+          },
+          "provider": {
+            "@id": "https://cnet77.fr/#entreprise"
+          }
+        }
+      }
+    ]
+  }
 }
 </script>
 <script type="application/ld+json">
