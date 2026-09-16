@@ -498,3 +498,7 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
   .pied-grille{grid-template-columns:1fr}
   .carte-map iframe{height:260px}
 }
+
+/* Page d'erreur : les recours sur une ligne, qui se replie sur telephone */
+.liens-404{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin:26px 0 18px}
+.liens-404 .btn{margin:0}
