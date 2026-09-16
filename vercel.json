@@ -71,6 +71,16 @@
       "source": "/mentions",
       "destination": "/mentions-legales",
       "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/mentions-legales",
+      "permanent": true
+    },
+    {
+      "source": "/partenaires",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "headers": [
