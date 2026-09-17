@@ -535,3 +535,18 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
 .reseaux a{display:inline-flex;align-items:center;gap:9px;transition:color .2s}
 .reseaux svg{width:21px;height:21px;flex:none}
 .reseaux a:hover{color:var(--rose-pale)}
+/* ---------- Questions fréquentes ---------- */
+/* Volets natifs du navigateur : aucun JavaScript, donc le contenu reste lisible
+   par Google et par les lecteurs d'ecran meme quand le volet est ferme. */
+.qr{border:1px solid var(--ligne);border-radius:var(--rayon);background:var(--blanc);
+  margin-bottom:12px;overflow:hidden;transition:border-color .2s}
+.qr[open]{border-color:var(--rose)}
+.qr summary{cursor:pointer;list-style:none;padding:17px 46px 17px 20px;position:relative;
+  font-family:var(--titre);font-weight:500;font-size:1.02rem;color:var(--rose-fonce);line-height:1.35}
+.qr summary::-webkit-details-marker{display:none}
+.qr summary::after{content:"";position:absolute;right:20px;top:24px;width:9px;height:9px;
+  border-right:2px solid var(--rose);border-bottom:2px solid var(--rose);
+  transform:rotate(45deg);transition:transform .25s}
+.qr[open] summary::after{transform:rotate(-135deg);top:27px}
+.qr summary:hover{color:var(--rose)}
+.qr p{padding:0 20px 18px;color:var(--gris);font-size:.95rem;line-height:1.7;margin:0}
