@@ -559,3 +559,7 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
   .tableau-legal.cookies th:first-child,.tableau-legal.cookies td:first-child,
   .tableau-legal.cookies th:last-child,.tableau-legal.cookies td:last-child{width:auto;white-space:normal}
 }
+/* Page Postuler : le texte des dirigeantes, a cote du formulaire. */
+.texte-postuler p{color:var(--gris);line-height:1.8;font-size:1.01rem}
+.texte-postuler p+p{margin-top:16px}
+.texte-postuler p:first-child{color:var(--encre);font-size:1.07rem}
