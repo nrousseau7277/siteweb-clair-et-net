@@ -161,7 +161,7 @@
 var Consentement = (function () {
   // Identifiant Google Analytics 4 de Clair & Net (G-XXXXXXXXXX).
   // Vide : aucune mesure n'est chargee et le bandeau ne parle que du plan.
-  var GA = '';
+  var GA = 'G-PQFZ933YCX';
 
   var CLE = 'cnet-choix';
   var DUREE = 182 * 24 * 3600 * 1000; // six mois
