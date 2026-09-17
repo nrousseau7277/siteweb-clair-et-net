@@ -103,7 +103,7 @@ h1,h2,h3{font-family:var(--titre);font-weight:500;line-height:1.18;letter-spacin
 .hero-grand,.hero-court{background:linear-gradient(165deg,var(--rose-haut),var(--fond) 70%)}
 .hero-grand .wrap{padding-top:clamp(56px,8vh,96px);padding-bottom:clamp(48px,7vh,84px);max-width:900px}
 .hero-court .wrap{padding-top:clamp(40px,6vh,68px);padding-bottom:clamp(34px,5vh,56px);max-width:900px}
-.surtitre{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);font-weight:500;margin-bottom:14px}
+.surtitre{display:block;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);font-weight:500;margin-bottom:14px}
 .surtitre.clair{color:#F7A8D6}
 h1{font-size:clamp(2rem,4.6vw,3.3rem);margin-bottom:18px;color:var(--rose-fonce)}
 .chapo{font-size:clamp(1.02rem,1.6vw,1.18rem);color:var(--gris);max-width:640px}
