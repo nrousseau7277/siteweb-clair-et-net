@@ -528,3 +528,10 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
 .logos-part img.clair{background:#2E3541;border-radius:8px;padding:10px 14px;max-height:62px}
 @media(max-width:860px){.logos-part{grid-template-columns:repeat(2,1fr);gap:18px}}
 @media(max-width:420px){.logos-part img{max-height:44px}.logos-part img.carre{max-height:56px}}
+/* ---------- Réseaux sociaux ---------- */
+/* Icone dessinee dans le code : aucun appel aux serveurs de Meta, donc aucun
+   pisteur et rien a declarer dans le bandeau de consentement. */
+.reseaux{margin-top:14px}
+.reseaux a{display:inline-flex;align-items:center;gap:9px;transition:color .2s}
+.reseaux svg{width:21px;height:21px;flex:none}
+.reseaux a:hover{color:var(--rose-pale)}
