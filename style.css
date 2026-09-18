@@ -563,3 +563,6 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
 .texte-postuler p{color:var(--gris);line-height:1.8;font-size:1.01rem}
 .texte-postuler p+p{margin-top:16px}
 .texte-postuler p:first-child{color:var(--encre);font-size:1.07rem}
+/* Page Postuler : ou envoyer son CV, juste avant le bouton */
+.envoi-cv{margin:4px 0 16px;font-size:.93rem;color:#4A3F47}
+.envoi-cv a{color:var(--rose-fonce);font-weight:600;text-decoration:underline;text-underline-offset:2px}
