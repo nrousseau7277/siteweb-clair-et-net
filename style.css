@@ -471,9 +471,7 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
 
 @media(max-width:980px){
   .trio,.etapes,.avis-grille{grid-template-columns:1fr}
-  .duo-cartes,.zone,/* Formulaire seul, sans colonne de texte a cote : on le centre. */
-.form-seul{max-width:640px;margin:0 auto}
-.grille-form{grid-template-columns:1fr}
+  .duo-cartes,.zone,.grille-form{grid-template-columns:1fr}
   .pied-grille{grid-template-columns:1fr 1fr}
 }
 @media(max-width:940px){
@@ -504,7 +502,7 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
     background:var(--rose-pale);color:var(--rose-fonce);font-size:1.6rem;line-height:0;
     cursor:pointer;-webkit-tap-highlight-color:transparent}
   .fermer-menu:active{background:#F8D7EC}
-  .duo-champs{grid-template-columns:1fr}
+  .duo-champs{grid-template-columns:1fr;row-gap:0}
   .pied-grille{grid-template-columns:1fr}
   .carte-map iframe{height:260px}
 }
@@ -566,3 +564,8 @@ form [type="submit"]:disabled{opacity:.6;cursor:wait}
 /* Page Postuler : ou envoyer son CV, juste avant le bouton */
 .envoi-cv{margin:4px 0 16px;font-size:.93rem;color:#4A3F47}
 .envoi-cv a{color:var(--rose-fonce);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+/* Zone d'intervention (accueil) : le texte a cote du plan, puis les communes
+   et le bouton d'appel sur toute la largeur, en dessous. Sur telephone :
+   texte, plan, puis communes et bouton. */
+.zone-bas{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px}
+.zone .zone-bas p{margin:0}
